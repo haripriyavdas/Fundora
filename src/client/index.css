@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+
+/* Design tokens (docs/frontend.md). Don't add colours outside this block. */
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand: #4f46e5;
+  --color-brand-strong: #3730a3;
+  --color-brand-soft: #eef2ff;
+  --color-accent: #f59e0b;
+  --color-accent-strong: #b45309;
+
+  --color-ink: #1c2333;
+  --color-muted: #5b6475;
+  --color-surface: #f6f7fb;
+  --color-surface-2: #eceef5;
+  --color-line: #e3e6ee;
+
+  --color-eligible: #15803d;
+  --color-eligible-bg: #dcfce7;
+  --color-almost: #b45309;
+  --color-almost-bg: #fef3c7;
+  --color-not: #b91c1c;
+  --color-not-bg: #fee2e2;
+  --color-info: #1d4ed8;
+  --color-info-bg: #dbeafe;
+
+  --animate-fade-up: fade-up 0.4s ease-out both;
+  --animate-pop: pop 0.25s ease-out both;
+  --animate-shake: shake 0.4s ease-in-out;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes shake {
+    0%,
+    100% {
+      transform: none;
+    }
+    20%,
+    60% {
+      transform: translateX(-6px);
+    }
+    40%,
+    80% {
+      transform: translateX(6px);
+    }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-surface font-sans text-ink antialiased;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

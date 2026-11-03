@@ -1,0 +1,133 @@
+{
+  "common": {
+    "appName": "Fundora",
+    "skipToContent": "Skip to main content",
+    "loading": "Loading…",
+    "retry": "Try again",
+    "backHome": "Back to home",
+    "networkError": "You seem to be offline. Check your connection and try again.",
+    "serverError": "Something went wrong on our side. Please try again.",
+    "rateLimited": "Too many attempts. Please wait a minute and try again."
+  },
+  "nav": {
+    "main": "Main",
+    "login": "Log in",
+    "signup": "Sign up free",
+    "dashboard": "Dashboard",
+    "logout": "Log out",
+    "menu": "Menu"
+  },
+  "footer": {
+    "tagline": "Every scholarship you qualify for, in one place.",
+    "scam": "Fundora never charges fees, never asks for passwords or OTPs, and every Apply button goes to the official website.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "made": "Made by students at BMS College of Engineering, Bengaluru."
+  },
+  "home": {
+    "eyebrow": "For undergraduate students in India",
+    "title": "Find every scholarship you qualify for",
+    "subtitle": "Fill one profile. See every scholarship, loan, fee waiver and grant sorted into Eligible, Almost eligible and Not eligible, with a plain reason for each.",
+    "cta": "Create my free profile",
+    "ctaSecondary": "I already have an account",
+    "free": "Free. No fees, ever.",
+    "howTitle": "How it works",
+    "steps": {
+      "profile": {
+        "title": "Fill one profile",
+        "text": "Your course, marks, family income and background. About 5 minutes."
+      },
+      "match": {
+        "title": "See your matches",
+        "text": "Every scheme is checked against your profile, with the reason you qualify or don't."
+      },
+      "apply": {
+        "title": "Apply on the official site",
+        "text": "Each Apply button opens the government or foundation portal. We never apply for you."
+      }
+    },
+    "states": {
+      "title": "Clear answers, not guesses",
+      "eligible": "Eligible",
+      "eligibleReason": "You meet all 5 conditions",
+      "almost": "Almost eligible",
+      "almostReason": "You need 60%; you have 57%, which is 3% short",
+      "not": "Not eligible",
+      "notReason": "This scheme is only for students from Maharashtra"
+    },
+    "safetyTitle": "Safe by design",
+    "safety": {
+      "official": "Every Apply button goes to the official portal.",
+      "noIds": "We never ask for your Aadhaar, bank account or portal passwords.",
+      "encrypted": "Your income, category and disability details are encrypted.",
+      "delete": "You can download or delete your data at any time."
+    }
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "orSeparator": "or",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Log in to see your scholarship matches.",
+    "loginSubmit": "Log in",
+    "forgotLink": "Forgot password?",
+    "noAccount": "New to Fundora?",
+    "createAccount": "Create an account",
+    "signupTitle": "Create your free account",
+    "signupSubtitle": "One profile, every scholarship you qualify for.",
+    "signupSubmit": "Create account",
+    "passwordHint": "At least 8 characters. Avoid common passwords like 12345678.",
+    "consent": "I have read the <privacy>privacy notice</privacy> and agree that Fundora can use my profile to match me with schemes.",
+    "haveAccount": "Already have an account?",
+    "forgotTitle": "Reset your password",
+    "forgotSubtitle": "Enter your email and we'll send you a link to choose a new password.",
+    "forgotSubmit": "Send reset link",
+    "forgotSent": "If an account exists for {{email}}, we've sent a reset link. It works for 1 hour. Check your spam folder too.",
+    "backToLogin": "Back to log in",
+    "resetTitle": "Choose a new password",
+    "resetSubtitle": "Pick a password you don't use on other sites.",
+    "newPassword": "New password",
+    "resetSubmit": "Save new password",
+    "resetDone": "Your password has been changed. You can log in now.",
+    "missingToken": "This link is incomplete. Open the link from your email again, or request a new one.",
+    "requestNewLink": "Request a new link",
+    "verifyTitle": "Confirming your email",
+    "verifyWorking": "Checking your link…",
+    "verifyDone": "Your email is confirmed. You'll now get deadline reminders.",
+    "verifyFailed": "This link is invalid or has expired.",
+    "verifyResendHint": "Log in and use “Resend email” on your dashboard to get a new link.",
+    "goToDashboard": "Go to my dashboard",
+    "loggingIn": "Logging in…",
+    "creating": "Creating account…",
+    "sending": "Sending…",
+    "saving": "Saving…",
+    "errors": {
+      "INVALID_CREDENTIALS": "That email and password don't match.",
+      "EMAIL_TAKEN": "An account with this email already exists. Try logging in.",
+      "INVALID_TOKEN": "This link is invalid or has expired. Please request a new one."
+    }
+  },
+  "app": {
+    "verifyBanner": "Please confirm your email ({{email}}) to get deadline reminders.",
+    "resend": "Resend email",
+    "resending": "Sending…",
+    "resent": "Sent! Check your inbox and spam folder.",
+    "loadError": "We couldn't load your account."
+  },
+  "dashboard": {
+    "title": "Hi there 👋",
+    "subtitle": "You're logged in as {{email}}.",
+    "profileTitle": "Your profile",
+    "profileComplete": "{{percent}}% complete",
+    "profileSoon": "The profile wizard is coming next. Once it's filled in, your scholarship matches appear here."
+  },
+  "placeholder": {
+    "privacyTitle": "Privacy notice",
+    "termsTitle": "Terms of use",
+    "body": "This page is being written and will be reviewed before launch.",
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The page you're looking for doesn't exist."
+  }
+}

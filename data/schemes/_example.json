@@ -1,0 +1,92 @@
+{
+  "id": "example-merit-scholarship",
+  "name": "Example Merit Scholarship (format reference only)",
+  "provider": "Example Foundation",
+  "providerType": "private",
+  "aidType": "scholarship",
+  "level": "UG",
+  "courses": ["engineering", "computer-it"],
+  "states": ["ALL"],
+  "groups": ["girls"],
+
+  "amount": "₹25,000 / year",
+  "amountMax": 25000,
+  "opensOn": "2026-07-01",
+  "closesOn": "2026-10-31",
+  "mode": "onlineAndOffline",
+  "portal": { "name": "Example Foundation Scholarships", "url": "https://example.org/apply" },
+  "sourceUrl": "https://example.org/scholarship-guidelines",
+  "verifiedOn": "2026-11-03",
+
+  "about": "One or two sentences on what the scheme is and who runs it.",
+  "benefits": ["₹25,000 a year for up to four years"],
+  "eligibilityText": [
+    "Girl students in the first year of an engineering degree",
+    "Family income up to ₹3,00,000 a year",
+    "At least 60% in Class 12"
+  ],
+
+  "rules": [
+    { "field": "gender", "op": "in", "value": ["female"], "hard": true },
+    {
+      "field": "courseCategory",
+      "op": "in",
+      "value": ["engineering", "computer-it"],
+      "hard": true
+    },
+    { "field": "yearOfStudy", "op": "eq", "value": 1, "hard": true },
+    { "field": "familyIncome", "op": "lte", "value": 300000, "nearMargin": 50000 },
+    { "field": "class12Percent", "op": "gte", "value": 60, "nearMargin": 5 }
+  ],
+  "renewal": {
+    "minAttendancePercent": 75,
+    "minCgpa": 6,
+    "text": "Renew every year with 75% attendance and a CGPA of 6 or more."
+  },
+
+  "documents": [
+    {
+      "id": "income-certificate",
+      "name": "Income certificate",
+      "note": "Issued by the Tahsildar, current financial year"
+    },
+    { "id": "class12-marksheet", "name": "Class 12 marks card", "note": "Self-attested copy" },
+    { "id": "fee-receipt", "name": "College fee receipt", "note": "Current academic year" }
+  ],
+  "steps": [
+    {
+      "title": "Register",
+      "text": "Create an account on the portal with your email and phone number."
+    },
+    {
+      "title": "Fill the form",
+      "text": "Enter your academic and family details and upload the documents."
+    },
+    {
+      "title": "Submit hard copies",
+      "text": "Take printed copies to your college scholarship section."
+    }
+  ],
+  "offline": {
+    "summary": "Hard copies go to your college after you apply online.",
+    "where": "College scholarship section",
+    "when": "Within 15 days of applying online",
+    "carry": ["Printed application", "Income certificate", "Class 12 marks card"]
+  },
+  "officialDocuments": [
+    {
+      "title": "Scheme guidelines 2026–27",
+      "kind": "guidelines",
+      "format": "pdf",
+      "url": "https://example.org/guidelines.pdf"
+    }
+  ],
+  "importantDates": [
+    { "label": "Applications open", "date": "2026-07-01" },
+    { "label": "Last date", "date": "2026-10-31" }
+  ],
+  "helpline": { "email": "help@example.org" },
+  "notes": [
+    "Values in this file are made up to show the format. Files starting with _ are never seeded."
+  ]
+}
