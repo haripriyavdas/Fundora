@@ -4,6 +4,10 @@ Newest first. Add a row whenever the team makes a choice someone might later ask
 
 | Date | Decision | Why |
 | --- | --- | --- |
+| 2026-11-04 | **`jsdom` pinned to 26.** | Version 30 needs Node 22+; production and CI run Node 20. |
+| 2026-11-04 | **`PUT /profile`: a missing field is unchanged, `null` clears it, unknown keys are a 400.** | Partial saves need a way to clear a value, and a rejected `aadhaarNumber` is safer than one silently dropped. |
+| 2026-11-04 | **`parentOccupation` and `nationality` are fixed lists**, not free text. | Scheme rules only compare exact values, so free text could never match. Add a value to `constants.ts` when a scheme needs it. |
+| 2026-11-04 | **Profile routes check that the account still exists.** | A session cookie can outlive its account, and the upsert would otherwise recreate a deleted student's data. |
 | 2026-11-03 | **Register logs the student in** (sets the session cookie) before the email is verified. | Docs already let unverified students log in and build a profile; `resend-verification` needs a session; saves a second login. |
 | 2026-11-03 | **Vitest 4, not 5.** | Vitest 5 requires Node 22+; production and CI run Node 20. |
 | 2026-11-03 | **`EMAIL_PROVIDER=console`** for local development. | New teammates can run the app without an email API key; env validation refuses it in production. |

@@ -17,8 +17,8 @@ Errors always look like `{ "error": { "code": "VALIDATION_FAILED", "message": "�
 | POST | `/auth/forgot` | public | `{ email }` | 200 always |
 | POST | `/auth/reset` | public | `{ token, password }` | 204 |
 | GET | `/me` | student | — | `{ user: { id, email, verified }, profileComplete: number }` |
-| GET | `/profile` | student | — | `Profile` (decrypted, own only) |
-| PUT | `/profile` | student | partial `Profile` | `Profile`; bumps `profileVersion` |
+| GET | `/profile` | student | — | `Profile` (decrypted, own only); `{ profileVersion: 0 }` before the first save |
+| PUT | `/profile` | student | partial `Profile`: a missing field is unchanged, `null` clears it, `docs` flags merge; unknown keys are a 400 | `Profile`; bumps `profileVersion` |
 | GET | `/schemes` | public* | `?q=&aidType=&providerType=&group=&state=&openOnly=&sort=` | `Scheme[]`, each with `match` when logged in, else `match.state = "unknown"` |
 | GET | `/schemes/:id` | public* | — | `Scheme` with `eligibility[]` (rule text + met/notMet/unknown) when logged in |
 | GET | `/saved` | student | — | `SavedScheme[]` |

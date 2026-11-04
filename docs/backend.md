@@ -38,6 +38,7 @@ In production: `express.static('dist/client')` and send `index.html` for any non
 | --- | --- |
 | `matching.ts` | Loads schemes, decrypts profile, calls `evaluate()`, reads and writes the `matchResults` cache |
 | `crypto.ts` | `encrypt(value)` / `decrypt(blob)`, AES-256-GCM, key from `FIELD_ENCRYPTION_KEY` (32 bytes, base64), random 12-byte IV per value, stores `iv:tag:ciphertext` |
+| `profile.ts` | Loads and saves profiles: encrypts sensitive fields, turns partial saves into Mongo updates, decrypts for the API |
 | `auth.ts` | Register, verify, resend, login, forgot and reset logic used by `routes/auth.ts` |
 | `tokens.ts` | Signs and verifies session JWTs; creates hashed single-use tokens for email verification and password reset |
 | `email.ts` | Sends verification, reset, reminder, report-received and broken-link emails through Resend/Brevo; templates in `services/email-templates/` |

@@ -20,7 +20,8 @@ src/shared/
 │   ├── operators.ts       ← eq, in, notIn, lte, gte, between, exists, isTrue
 │   ├── reasons.ts         ← plain-language reason templates per operator
 │   └── evaluate.test.ts   ← boundary tests
-└── constants.ts           ← course categories, states, aid types, categories (GEN/OBC/SC/ST/EWS)
+├── profileCompleteness.ts ← profile percentage for GET /me and the wizard
+└── constants.ts           ← course categories, states, categories (GEN/OBC/SC/ST/EWS), other value lists
 ```
 
 ## Rules

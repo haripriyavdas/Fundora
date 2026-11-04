@@ -28,4 +28,6 @@
 - Fixtures: sample profiles in `src/shared/eligibility/fixtures/profiles.ts`, sample schemes in `fixtures/schemes.ts`. Made-up data only; never real students.
 - Email in tests uses a stub transport that stores messages in memory (`outbox` in `services/email.ts`); `tokenFromEmail()` in `src/server/test/setup.ts` reads links from it.
 - API tests call `useTestDb()` and `testApp()` from `src/server/test/setup.ts`. The in-memory MongoDB keeps its files under `node_modules/.cache/mongo-test`, not the OS temp folder, because mongod won't start with under 500 MB free on that drive. The first run downloads the MongoDB binary.
+- Component tests start with `// @vitest-environment jsdom` and mock `features/*/api`. `jsdom` stays on v26 while we run Node 20.
+- API tests need to open local ports (Supertest and mongod). In a sandbox that blocks them they fail with `listen EPERM`, which isn't a bug in the code.
 - `npm test` must pass with no network access.

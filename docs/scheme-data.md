@@ -46,6 +46,8 @@ For teammates who don't code: fill the shared Google Sheet (one row per scheme, 
 
 Course category slugs: `arts`, `science`, `commerce`, `management`, `computer-it`, `engineering`, `medicine`, `dental`, `pharmacy`, `architecture`, `agriculture`, `nursing`, `paramedical`, `law`, `education`, `design-fine-arts`, `hotel-management`, `social-sciences`, `vocational`.
 
+State codes and every other value list a rule can compare against are in `src/shared/constants.ts`.
+
 ## What the scripts do
 
 | Script | Does |

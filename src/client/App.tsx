@@ -12,6 +12,7 @@ const ForgotPage = lazy(() => import('@/pages/auth/ForgotPage'))
 const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage'))
 const VerifyEmailPage = lazy(() => import('@/pages/auth/VerifyEmailPage'))
 const DashboardPage = lazy(() => import('@/pages/app/DashboardPage'))
+const ProfilePage = lazy(() => import('@/pages/app/ProfilePage'))
 
 export default function App() {
   const { t } = useTranslation()
@@ -58,6 +59,7 @@ export default function App() {
         {/* Logged-in student pages */}
         <Route element={<AppLayout />}>
           <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
       </Routes>
     </Suspense>

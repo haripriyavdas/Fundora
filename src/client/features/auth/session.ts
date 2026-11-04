@@ -39,6 +39,11 @@ export function setStudent(user: PublicUser) {
   void loadSession(true)
 }
 
+/** After a profile save: update the percentage without another request. */
+export function setProfileComplete(profileComplete: number) {
+  if (state.status === 'student') set({ ...state, profileComplete })
+}
+
 export async function logOut() {
   try {
     await authApi.logout()

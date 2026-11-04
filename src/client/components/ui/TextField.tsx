@@ -1,5 +1,5 @@
 import { Eye, EyeOff } from 'lucide-react'
-import { useId, useState, type InputHTMLAttributes } from 'react'
+import { forwardRef, useId, useState, type InputHTMLAttributes } from 'react'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/cn'
 
@@ -10,7 +10,10 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
 }
 
 /** Labelled input with hint and inline error wired up through aria-describedby. */
-export function TextField({ label, error, hint, type = 'text', className, ...input }: Props) {
+export const TextField = forwardRef<HTMLInputElement, Props>(function TextField(
+  { label, error, hint, type = 'text', className, ...input },
+  ref,
+) {
   const { t } = useTranslation()
   const id = useId()
   const [reveal, setReveal] = useState(false)
@@ -25,6 +28,7 @@ export function TextField({ label, error, hint, type = 'text', className, ...inp
       </label>
       <div className="relative">
         <input
+          ref={ref}
           id={id}
           type={isPassword && reveal ? 'text' : type}
           aria-invalid={error ? true : undefined}
@@ -65,4 +69,4 @@ export function TextField({ label, error, hint, type = 'text', className, ...inp
       )}
     </div>
   )
-}
+})

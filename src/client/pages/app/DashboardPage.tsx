@@ -1,12 +1,23 @@
 import { UserRound } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router'
+import { button } from '@/components/ui/button'
 import { useSession } from '@/features/auth/session'
+import { cn } from '@/lib/cn'
 
-// Placeholder until the profile (Phase 2) and matches (Phase 4) exist
+// Placeholder until matches (Phase 4) exist
 export default function DashboardPage() {
   const { t } = useTranslation()
   const session = useSession()
   if (session.status !== 'student') return null
+
+  const { profileComplete } = session
+  const ctaKey =
+    profileComplete === 0
+      ? 'dashboard.profileStart'
+      : profileComplete === 100
+        ? 'dashboard.profileEdit'
+        : 'dashboard.profileContinue'
 
   return (
     <div className="space-y-6 animate-fade-up">
@@ -41,7 +52,10 @@ export default function DashboardPage() {
         >
           <div className="h-full bg-brand" style={{ width: `${session.profileComplete}%` }} />
         </div>
-        <p className="mt-4 text-sm text-muted">{t('dashboard.profileSoon')}</p>
+        <p className="mt-4 text-sm text-muted">{t('dashboard.matchesSoon')}</p>
+        <Link to="/profile" className={cn(button.primary, 'mt-4 w-full sm:w-auto')}>
+          {t(ctaKey)}
+        </Link>
       </section>
     </div>
   )

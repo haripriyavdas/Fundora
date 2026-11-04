@@ -10,8 +10,8 @@ The React app in `src/client`, built by Vite into `dist/client` and served by Ex
 | `/login`, `/signup` | Email + password, consent checkbox (Google button: Phase 1b) | public | built (live API) |
 | `/forgot`, `/reset-password` | Password reset | public | built (live API) |
 | `/verify-email` | Confirms the emailed token | public | built (live API) |
-| `/profile` | 5-step wizard: education → marks & attendance → family & income → category & background → documents held | student | to build |
-| `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | placeholder (completeness only) |
+| `/profile` | 5-step wizard: education → marks & attendance → family & income → category & background → documents held | student | built (live API) |
+| `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | placeholder (completeness and profile link only) |
 | `/matches` | Tabs Eligible / Almost / Not eligible, filters (type, amount, deadline, provider, group), sort | student | to build |
 | `/browse` | All schemes, search, filters; no account needed | public | to build |
 | `/schemes/:schemeId` | Full scheme page with match reasons and Apply button | public | to build |
@@ -34,6 +34,9 @@ Fields map 1:1 to `ProfileSchema` in `src/shared/schemas/profile.ts`. Rules:
 - Explain why sensitive fields are asked ("Used only to match schemes. Encrypted. Never shared.").
 - Every field is optional to save, but matching shows `unknown` for schemes whose hard rules need a missing field, with a "Complete your profile" link.
 - Documents step = yes/no checklist (income certificate, caste certificate, disability certificate, Aadhaar-seeded bank account…). Never ask for numbers.
+- Steps are data in `features/profile/steps.ts`; `steps.test.ts` fails if a profile field isn't asked or has no label. Current-aid questions sit in the family & income step.
+- Built with `react-hook-form` and `@hookform/resolvers`, lazy-loaded with the page. The step is in the URL (`?step=2`), so refresh and the back button work. "Back" keeps unsaved typing but doesn't save it.
+- Blank inputs become `null`, so emptying a field really clears it. Number inputs are text inputs with a number keyboard, which accept `2,50,000`.
 
 ## Design system
 

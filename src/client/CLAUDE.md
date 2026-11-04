@@ -15,7 +15,7 @@ src/client/
 ├── features/
 │   ├── schemes/           ← api.ts, useSchemes.ts, format.ts, mockData.ts
 │   ├── applications/      ← store.ts (saved schemes + tracker stage)
-│   └── profile/           ← profile wizard state + api (to build)
+│   └── profile/           ← api.ts, useProfile.ts, steps.ts (the wizard's steps, as data)
 ├── pages/
 │   ├── home/              ← landing page + sections
 │   ├── auth/              ← login, signup, Google sign-in
@@ -40,4 +40,4 @@ src/client/
 
 ## Routes (current)
 
-`/`, `/login`, `/signup`, `/forgot`, `/reset-password`, `/verify-email`, `/dashboard` (placeholder), `/privacy`, `/terms`. To add: `/profile` (wizard), `/matches`, `/browse`, `/schemes/:schemeId`, `/applications`, `/account` (export + delete), `/guides`, `/guides/:slug`.
+`/`, `/login`, `/signup`, `/forgot`, `/reset-password`, `/verify-email`, `/dashboard` (placeholder), `/profile` (wizard), `/privacy`, `/terms`. To add: `/matches`, `/browse`, `/schemes/:schemeId`, `/applications`, `/account` (export + delete), `/guides`, `/guides/:slug`.

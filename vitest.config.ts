@@ -1,6 +1,16 @@
+import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vitest/config'
 
+const fromRoot = (path: string) => fileURLToPath(new URL(path, import.meta.url))
+
 export default defineConfig({
+  // Same aliases as vite.config.ts, for client tests
+  resolve: {
+    alias: {
+      '@shared': fromRoot('./src/shared'),
+      '@': fromRoot('./src/client'),
+    },
+  },
   test: {
     environment: 'node',
     include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],

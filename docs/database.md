@@ -35,7 +35,9 @@ One per user. Fields match `ProfileSchema` (`src/shared/schemas/profile.ts`).
 | Documents held (yes/no) | `docs.incomeCertificate`, `docs.casteCertificate`, `docs.disabilityCertificate`, `docs.domicileCertificate`, `docs.bankAadhaarSeeded`, `docs.class12Marksheet`, `docs.feeReceipt` |
 | System | `userId` (unique), `profileVersion` (int, +1 on every save) |
 
-🔒 = stored encrypted (`iv:tag:ciphertext` string) via `services/crypto.ts`. Encrypted fields can't be queried, which is fine because matching runs in Node.
+🔒 = stored encrypted (`iv:tag:ciphertext` string) via `services/crypto.ts`. Encrypted fields can't be queried, which is fine because matching runs in Node. `disability` is one encrypted value, so `{ has, percent? }` isn't readable as separate paths in the database.
+
+Value lists are in `src/shared/constants.ts`: `parentOccupation` and `nationality` are fixed lists so scheme rules can match them, `gender` is `female` / `male` / `other`, and states are two-letter codes. Value rules live in Zod, not in the Mongoose model. A field the student clears is removed from the document, not stored as `null`. A profile document is only created on the first save.
 
 Never stored: Aadhaar number, bank account number, any ID number, portal usernames or passwords.
 
