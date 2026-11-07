@@ -1,6 +1,6 @@
 # CLAUDE.md — Fundora
 
-Read this first. More detail lives in `docs/`, and each code area has its own `CLAUDE.md` (`src/client`, `src/server`, `src/shared`, `data/schemes`).
+Read this first. More detail lives in `docs/`, and each code area has its own `CLAUDE.md` (`frontend-fundora-starter`, `src/server`, `src/shared`, `data/schemes`).
 
 ## What Fundora is
 
@@ -21,9 +21,8 @@ A website where an undergraduate student signs up, fills one profile, and sees e
 fundora/
 ├── CLAUDE.md                 ← you are here
 ├── package.json              ← the only package.json
-├── index.html                ← Vite entry (loads src/client/main.tsx)
+├── frontend-fundora-starter/ ← React app (index.html, public/, pages, components, i18n) → frontend-fundora-starter/CLAUDE.md
 ├── src/
-│   ├── client/               ← React app (pages, components, i18n)   → src/client/CLAUDE.md
 │   ├── server/               ← Express API, Mongoose models, jobs     → src/server/CLAUDE.md
 │   └── shared/               ← Zod schemas, types, eligibility engine → src/shared/CLAUDE.md
 ├── data/schemes/             ← scheme JSON files (source of truth)    → data/schemes/CLAUDE.md
@@ -67,7 +66,7 @@ Update this section when scripts change.
 | Add or fix a scheme | `data/schemes/CLAUDE.md`, `docs/scheme-data.md` | `add-scheme` |
 | New API route | `src/server/CLAUDE.md`, `docs/api.md` | `api-route` |
 | Change eligibility logic | `src/shared/CLAUDE.md`, `docs/eligibility-engine.md` | `eligibility-engine` |
-| New page or component | `src/client/CLAUDE.md`, `docs/frontend.md` | `frontend-page` |
+| New page or component | `frontend-fundora-starter/CLAUDE.md`, `docs/frontend.md` | `frontend-page` |
 | Models, indexes, querying the DB | `docs/database.md` | `mongodb` |
 | Before opening a PR | `docs/security.md`, `docs/testing.md` | `security-review` |
 | What to build next | `docs/build-plan.md` | — |

@@ -32,8 +32,9 @@ Open a terminal in this folder and run `claude`. It reads `CLAUDE.md` automatica
 ## Folder map
 
 ```
-src/client     React app             src/server    Express API
-src/shared     schemas + engine      data/schemes  scheme JSON (source of truth)
+frontend-fundora-starter   React app (+ index.html, public/)
+src/server     Express API           src/shared    schemas + engine
+data/schemes   scheme JSON (source of truth)
 content        guides, stories       scripts       validate, seed, check, import
 tests/e2e      Playwright            docs          everything else
 ```

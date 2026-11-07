@@ -17,7 +17,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['src/client/**/*.{ts,tsx}'],
+    files: ['frontend-fundora-starter/**/*.{ts,tsx}'],
     languageOptions: { globals: globals.browser },
     plugins: { 'react-hooks': reactHooks, 'react-refresh': reactRefresh },
     rules: {

@@ -15,10 +15,10 @@
     "noEmit": true,
     "types": ["vite/client"],
     "paths": {
-      "@/*": ["./src/client/*"],
+      "@/*": ["./frontend-fundora-starter/*"],
       "@shared/*": ["./src/shared/*"]
     }
   },
-  "include": ["src/client", "src/shared", "vite.config.ts", "vitest.config.ts"],
+  "include": ["frontend-fundora-starter", "src/shared", "vite.config.ts", "vitest.config.ts"],
   "exclude": ["src/shared/**/*.test.ts"]
 }

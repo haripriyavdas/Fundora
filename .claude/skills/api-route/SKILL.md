@@ -37,7 +37,7 @@ Read `src/server/CLAUDE.md`, `docs/api.md` and `docs/backend.md` first.
    - 401 when logged out
    - 404 when touching another student's resource
    - the route's own edge cases
-6. **Client:** if the frontend uses it, add or update the function in `src/client/features/<area>/api.ts`, typed from `@shared`.
+6. **Client:** if the frontend uses it, add or update the function in `frontend-fundora-starter/features/<area>/api.ts`, typed from `@shared`.
 7. **Check:** `npm run lint`, `npm run typecheck`, `npm test`.
 
 ## Never

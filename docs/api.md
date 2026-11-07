@@ -1,6 +1,6 @@
 # API
 
-Base path `/api/v1`, same origin as the site. JSON in and out. Session = httpOnly cookie `fundora_session`. Shapes are Zod schemas in `src/shared/schemas`; the client already calls these paths (`src/client/lib/api.ts`, `features/*/api.ts`).
+Base path `/api/v1`, same origin as the site. JSON in and out. Session = httpOnly cookie `fundora_session`. Shapes are Zod schemas in `src/shared/schemas`; the client already calls these paths (`frontend-fundora-starter/lib/api.ts`, `features/*/api.ts`).
 
 Errors always look like `{ "error": { "code": "VALIDATION_FAILED", "message": "…", "fields": { "email": "Invalid email" } } }`.
 

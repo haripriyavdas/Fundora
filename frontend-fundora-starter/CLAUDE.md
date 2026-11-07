@@ -1,11 +1,13 @@
-# src/client — React app
+# frontend-fundora-starter — React app
 
 The student-facing website. Full guide: `docs/frontend.md`. Skill: `frontend-page`.
 
 ## Layout
 
 ```
-src/client/
+frontend-fundora-starter/
+├── index.html             ← Vite entry (Vite's root is this folder)
+├── public/                ← static files served as-is (favicon)
 ├── main.tsx, App.tsx      ← entry + routes (React Router v7)
 ├── index.css              ← Tailwind v4 @theme tokens (colours, fonts, animations)
 ├── components/
@@ -26,7 +28,7 @@ src/client/
 
 ## Rules
 
-- **Imports:** `@/` → `src/client`, `@shared/` → `src/shared`. Types for schemes, profiles and saved schemes come from `@shared/schemas` (Zod). Never redefine them here.
+- **Imports:** `@/` → `frontend-fundora-starter`, `@shared/` → `src/shared`. Types for schemes, profiles and saved schemes come from `@shared/schemas` (Zod). Never redefine them here.
 - **API calls** go through `lib/api.ts` (`apiGet`, `apiPost`, …) from a `features/*/api.ts` file. Base URL is `/api/v1`, same origin, `credentials: 'include'`. Pages never call `fetch` directly.
 - **Mock data:** `features/schemes/mockData.ts` stays until each API route works. `VITE_USE_MOCK_DATA=false` switches to the real API.
 - **Every user-facing string goes through `t()`** with keys in `i18n/locales/en.json`. Kannada (`kn`) and Hindi (`hi`) come later, so no hard-coded text.

@@ -1,11 +1,11 @@
 ---
 name: frontend-page
-description: Build or change a page, section or component in Fundora's React app (src/client) following its design tokens, i18n, mobile-first and accessibility rules. Use for any UI work - new pages, forms, the profile wizard, tracker, scheme cards, landing page sections.
+description: Build or change a page, section or component in Fundora's React app (frontend-fundora-starter) following its design tokens, i18n, mobile-first and accessibility rules. Use for any UI work - new pages, forms, the profile wizard, tracker, scheme cards, landing page sections.
 ---
 
 # Build frontend UI
 
-Read `src/client/CLAUDE.md` and `docs/frontend.md` first. Look at two existing components nearby (for example `components/app/SchemeCard.tsx`, `pages/auth/SignupPage.tsx`) and match their style.
+Read `frontend-fundora-starter/CLAUDE.md` and `docs/frontend.md` first. Look at two existing components nearby (for example `components/app/SchemeCard.tsx`, `pages/auth/SignupPage.tsx`) and match their style.
 
 ## Steps
 

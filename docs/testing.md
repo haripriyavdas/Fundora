@@ -4,7 +4,7 @@
 | --- | --- | --- | --- |
 | Engine + schemas | Vitest | `src/shared/**/*.test.ts` | every PR |
 | API | Vitest + Supertest + mongodb-memory-server | `src/server/**/*.test.ts` | every PR |
-| Components | Vitest + Testing Library (jsdom) | `src/client/**/*.test.tsx` | every PR |
+| Components | Vitest + Testing Library (jsdom) | `frontend-fundora-starter/**/*.test.tsx` | every PR |
 | Scheme data | `npm run validate-schemes` | `data/schemes` | every PR |
 | End to end | Playwright (mobile Chrome profile) | `tests/e2e` | PRs to `main` |
 | Accessibility | @axe-core/playwright inside e2e | `tests/e2e` | PRs to `main` |

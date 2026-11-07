@@ -1,6 +1,6 @@
 # Frontend
 
-The React app in `src/client`, built by Vite into `dist/client` and served by Express. It was written fresh here in Phase 0 (see `decisions.md`).
+The React app in `frontend-fundora-starter`, built by Vite into `dist/client` and served by Express. It was written fresh here in Phase 0 (see `decisions.md`).
 
 ## Pages
 
@@ -40,7 +40,7 @@ Fields map 1:1 to `ProfileSchema` in `src/shared/schemas/profile.ts`. Rules:
 
 ## Design system
 
-Tokens live in `src/client/index.css` under `@theme`:
+Tokens live in `frontend-fundora-starter/index.css` under `@theme`:
 
 | Token | Use |
 | --- | --- |
@@ -54,7 +54,7 @@ Font: Inter Variable. Corners: `rounded-2xl` cards. Animations: `animate-fade-up
 
 ## i18n
 
-`react-i18next`, one JSON per language in `src/client/i18n/locales/`. English now; Kannada (`kn.json`) and Hindi (`hi.json`) later. Keys are grouped by page (`home.*`, `signup.*`, `scheme.*`). Scheme content from the database is English-only in v1.
+`react-i18next`, one JSON per language in `frontend-fundora-starter/i18n/locales/`. English now; Kannada (`kn.json`) and Hindi (`hi.json`) later. Keys are grouped by page (`home.*`, `signup.*`, `scheme.*`). Scheme content from the database is English-only in v1.
 
 ## Performance budget
 

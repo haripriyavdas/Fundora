@@ -8,12 +8,12 @@ export default defineConfig({
   resolve: {
     alias: {
       '@shared': fromRoot('./src/shared'),
-      '@': fromRoot('./src/client'),
+      '@': fromRoot('./frontend-fundora-starter'),
     },
   },
   test: {
     environment: 'node',
-    include: ['src/**/*.test.ts', 'src/**/*.test.tsx'],
+    include: ['src/**/*.test.ts', 'frontend-fundora-starter/**/*.test.{ts,tsx}'],
     setupFiles: ['src/server/test/env.ts'],
     // mongodb-memory-server needs time to start on the first run
     hookTimeout: 60_000,
