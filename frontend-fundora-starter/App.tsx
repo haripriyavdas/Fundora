@@ -13,6 +13,7 @@ const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage'))
 const VerifyEmailPage = lazy(() => import('@/pages/auth/VerifyEmailPage'))
 const DashboardPage = lazy(() => import('@/pages/app/DashboardPage'))
 const ProfilePage = lazy(() => import('@/pages/app/ProfilePage'))
+const ComingSoonPage = lazy(() => import('@/pages/app/ComingSoonPage'))
 
 export default function App() {
   const { t } = useTranslation()
@@ -60,6 +61,10 @@ export default function App() {
         <Route element={<AppLayout />}>
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          {/* Until schemes, matching and the tracker exist */}
+          <Route path="matches" element={<ComingSoonPage area="matches" />} />
+          <Route path="applications" element={<ComingSoonPage area="applications" />} />
+          <Route path="browse" element={<ComingSoonPage area="browse" />} />
         </Route>
       </Routes>
     </Suspense>

@@ -4,26 +4,37 @@
 @theme {
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand: #4f46e5;
-  --color-brand-strong: #3730a3;
-  --color-brand-soft: #eef2ff;
-  --color-accent: #f59e0b;
-  --color-accent-strong: #b45309;
+  /* Red: primary actions, active nav, urgency and hero cards only */
+  --color-brand: #d1352b;
+  --color-brand-strong: #b02a22;
+  --color-brand-soft: #fbe3e0;
+  /* Charcoal: sidebar, ink buttons, selected filter pills */
+  --color-accent: #16161a;
+  --color-accent-strong: #000000;
+  --color-on-accent: #f3efe7;
+  --color-on-accent-muted: #b9b4aa;
 
-  --color-ink: #1c2333;
-  --color-muted: #5b6475;
-  --color-surface: #f6f7fb;
-  --color-surface-2: #eceef5;
-  --color-line: #e3e6ee;
+  --color-ink: #15151a;
+  --color-body: #4a4650;
+  /* Darker than the reference #7a7580 so meta text passes 4.5:1 on the cream canvas */
+  --color-muted: #6e6974;
+  --color-surface: #f2eee6;
+  --color-surface-2: #f7f4ee;
+  --color-tile: #ede7da;
+  --color-line: #e4ded2;
+  --color-line-soft: #efe9dd;
+  --color-line-strong: #d8d1c3;
 
-  --color-eligible: #15803d;
-  --color-eligible-bg: #dcfce7;
-  --color-almost: #b45309;
-  --color-almost-bg: #fef3c7;
-  --color-not: #b91c1c;
-  --color-not-bg: #fee2e2;
+  --color-eligible: #1f7a4d;
+  --color-eligible-bg: #e3f3ea;
+  --color-almost: #8a5a00;
+  --color-almost-bg: #fbefcf;
+  --color-not: #b3261e;
+  --color-not-bg: #fbe3e0;
   --color-info: #1d4ed8;
   --color-info-bg: #dbeafe;
+  --color-warn: #7a5a12;
+  --color-warn-bg: #f4e7c5;
 
   --animate-fade-up: fade-up 0.4s ease-out both;
   --animate-pop: pop 0.25s ease-out both;
@@ -70,7 +81,12 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-surface font-sans text-ink antialiased;
+    @apply bg-surface font-sans text-base/[1.55] text-body antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply text-ink;
   }
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-brand;

@@ -31,8 +31,8 @@ export function YesNoField({ label, value, onChange, onBlur, error, hint }: Prop
             key={text}
             className={cn(
               'flex min-h-11 cursor-pointer items-center gap-2 rounded-xl border bg-white px-3.5 text-base',
-              'has-focus-visible:ring-2 has-focus-visible:ring-brand-soft',
-              value === answer ? 'border-brand bg-brand-soft font-medium' : 'border-line',
+              'has-focus-visible:ring-2 has-focus-visible:ring-line-strong',
+              value === answer ? 'border-accent bg-tile font-medium text-ink' : 'border-line',
             )}
           >
             <input
@@ -41,7 +41,7 @@ export function YesNoField({ label, value, onChange, onBlur, error, hint }: Prop
               checked={value === answer}
               onChange={() => onChange(answer)}
               onBlur={onBlur}
-              className="size-5 shrink-0 accent-brand"
+              className="size-5 shrink-0 accent-accent"
             />
             {text}
           </label>

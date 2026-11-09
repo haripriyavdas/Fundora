@@ -14,8 +14,8 @@ export default function PlaceholderPage({
   const { t } = useTranslation()
   return (
     <Container className="max-w-2xl py-16">
-      <h1 className="text-3xl font-bold tracking-tight">{t(titleKey)}</h1>
-      <p className="mt-3 text-muted">{t(bodyKey)}</p>
+      <h1 className="text-4xl font-extrabold tracking-[-0.02em] sm:text-5xl">{t(titleKey)}</h1>
+      <p className="mt-3 text-body">{t(bodyKey)}</p>
       <Link to="/" className={`${button.secondary} mt-8`}>
         {t('common.backHome')}
       </Link>

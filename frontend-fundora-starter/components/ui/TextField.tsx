@@ -35,7 +35,7 @@ export const TextField = forwardRef<HTMLInputElement, Props>(function TextField(
           aria-describedby={describedBy}
           className={cn(
             'min-h-11 w-full rounded-xl border bg-white px-3.5 text-base text-ink placeholder:text-muted',
-            'focus:border-brand focus:ring-2 focus:ring-brand-soft focus:outline-none',
+            'focus:border-accent focus:ring-2 focus:ring-tile focus:outline-none',
             error ? 'border-not' : 'border-line',
             isPassword && 'pr-12',
           )}

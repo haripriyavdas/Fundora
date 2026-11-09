@@ -10,7 +10,7 @@ export function Navbar() {
   const session = useSession()
 
   return (
-    <header className="border-b border-line bg-white/90 backdrop-blur">
+    <header className="border-b border-line bg-surface/90 backdrop-blur">
       <Container className="flex h-16 items-center justify-between gap-3">
         <Logo />
         <nav aria-label={t('nav.main')} className="flex items-center gap-1 sm:gap-2">

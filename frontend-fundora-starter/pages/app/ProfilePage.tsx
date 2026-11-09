@@ -124,7 +124,7 @@ function ProfileWizard({ saved }: { saved: Profile }) {
 
   return (
     <div className="mx-auto max-w-xl animate-fade-up">
-      <p className="text-sm font-medium text-muted">
+      <p className="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
         {t('profile.stepOf', { current: stepIndex + 1, total: PROFILE_STEPS.length })}
       </p>
       <ol className="mt-2 flex gap-1.5" aria-label={t('profile.progress')}>
@@ -134,7 +134,7 @@ function ProfileWizard({ saved }: { saved: Profile }) {
             aria-current={index === stepIndex ? 'step' : undefined}
             className={cn(
               'h-1.5 flex-1 rounded-full',
-              index <= stepIndex ? 'bg-brand' : 'bg-surface-2',
+              index <= stepIndex ? 'bg-accent' : 'bg-tile',
             )}
           >
             <span className="sr-only">{t(`profile.steps.${s.id}.title`)}</span>
@@ -145,11 +145,11 @@ function ProfileWizard({ saved }: { saved: Profile }) {
       <h1
         ref={headingRef}
         tabIndex={-1}
-        className="mt-5 text-2xl font-bold tracking-tight outline-none sm:text-3xl"
+        className="mt-5 text-3xl font-extrabold tracking-[-0.02em] outline-none sm:text-4xl"
       >
         {t(`profile.steps.${step.id}.title`)}
       </h1>
-      <p className="mt-1 text-muted">{t(`profile.steps.${step.id}.intro`)}</p>
+      <p className="mt-2 text-body">{t(`profile.steps.${step.id}.intro`)}</p>
 
       <FormProvider {...form}>
         <form

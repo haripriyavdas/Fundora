@@ -11,11 +11,11 @@ The React app in `frontend-fundora-starter`, built by Vite into `dist/client` an
 | `/forgot`, `/reset-password` | Password reset | public | built (live API) |
 | `/verify-email` | Confirms the emailed token | public | built (live API) |
 | `/profile` | 5-step wizard: education → marks & attendance → family & income → category & background → documents held | student | built (live API) |
-| `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | placeholder (completeness and profile link only) |
-| `/matches` | Tabs Eligible / Almost / Not eligible, filters (type, amount, deadline, provider, group), sort | student | to build |
-| `/browse` | All schemes, search, filters; no account needed | public | to build |
+| `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | stat tiles (empty until matching), profile card, "Save a scheme" tile |
+| `/matches` | Tabs Eligible / Almost / Not eligible, filters (type, amount, deadline, provider, group), sort | student | to build (coming-soon page in the sidebar for now) |
+| `/browse` | All schemes, search, filters; no account needed | public | to build (coming-soon page inside the logged-in shell for now) |
 | `/schemes/:schemeId` | Full scheme page with match reasons and Apply button | public | to build |
-| `/applications` | Tracker: Saved · Applied · Renewal due | student | to build |
+| `/applications` | Tracker: Saved · Applied · Renewal due | student | to build (coming-soon page for now) |
 | `/account` | Reminder settings, export data, delete account | student | to build |
 | `/guides`, `/guides/:slug` | Markdown guides from `content/guides` | public | to build |
 | `/privacy`, `/terms` | Static | public | placeholder |
@@ -44,13 +44,14 @@ Tokens live in `frontend-fundora-starter/index.css` under `@theme`:
 
 | Token | Use |
 | --- | --- |
-| `brand`, `brand-strong`, `brand-soft` | primary actions, highlights |
-| `accent`, `accent-strong` | secondary highlights |
-| `ink`, `muted` | body text, secondary text |
-| `surface`, `surface-2`, `line` | backgrounds, cards, borders |
-| `eligible(-bg)`, `almost(-bg)`, `not(-bg)`, `info(-bg)` | match states and notices |
+| `brand`, `brand-strong`, `brand-soft` | red (`#D1352B`): primary actions, active nav, urgency, hero cards only |
+| `accent`, `accent-strong`, `on-accent`, `on-accent-muted` | charcoal sidebar, ink buttons, selected pills, and the cream text on them |
+| `ink`, `body`, `muted` | headings, body text, meta and eyebrows |
+| `surface`, `surface-2`, `tile` | cream canvas, panel/footer tint, beige icon tiles and mode chips |
+| `line`, `line-soft`, `line-strong` | card borders, dividers inside cards, secondary-button and dashed borders |
+| `eligible(-bg)`, `almost(-bg)`, `not(-bg)`, `info(-bg)`, `warn(-bg)` | match states, notices, warning banners |
 
-Font: Inter Variable. Corners: `rounded-2xl` cards. Animations: `animate-fade-up`, `animate-pop`, `animate-shake` (form errors). Match states always show icon + word + colour.
+Look: cream canvas, charcoal sidebar (300 px, collapses to a top bar + bottom nav below `lg`), flat red hero cards, no gradients, emoji or illustrations, thin stroke icons. Font: Inter Variable; display headings `font-extrabold` with `tracking-[-0.02em]`; eyebrows are 12 px caps with `tracking-[0.14em]` (`components/ui/Eyebrow.tsx`, with `PageHeader`). Corners: `rounded-2xl` cards, `rounded-full` buttons and chips, `rounded-[20px]` hero panels. Buttons: `button.primary` (red), `secondary` (white + border), `ink` (charcoal), `ghost`, `onBrand` (white pill on red). Building blocks: `StatTile`, `EmptyTile` in `components/app`. Animations: `animate-fade-up`, `animate-pop`, `animate-shake` (form errors). Match states always show icon + word + colour.
 
 ## i18n
 

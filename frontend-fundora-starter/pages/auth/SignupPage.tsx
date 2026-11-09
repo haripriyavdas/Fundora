@@ -107,7 +107,7 @@ export default function SignupPage() {
               onChange={(e) => setValues({ ...values, consent: e.target.checked })}
               aria-invalid={errors.consent ? true : undefined}
               aria-describedby={errors.consent ? 'consent-error' : undefined}
-              className="mt-0.5 size-5 shrink-0 accent-brand"
+              className="mt-0.5 size-5 shrink-0 accent-accent"
             />
             <span>
               <Trans

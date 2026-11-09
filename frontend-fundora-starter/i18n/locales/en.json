@@ -17,13 +17,25 @@
     "signup": "Sign up free",
     "dashboard": "Dashboard",
     "logout": "Log out",
-    "menu": "Menu"
+    "menu": "Menu",
+    "app": "My Fundora",
+    "home": "Home",
+    "homeShort": "Home",
+    "matches": "My matches",
+    "matchesShort": "Matches",
+    "applications": "My applications",
+    "applicationsShort": "Applied",
+    "browse": "Browse",
+    "browseShort": "Browse",
+    "profile": "My profile",
+    "profileShort": "Profile"
   },
   "footer": {
     "tagline": "Every scholarship you qualify for, in one place.",
     "scam": "Fundora never charges fees, never asks for passwords or OTPs, and every Apply button goes to the official website.",
     "privacy": "Privacy",
     "terms": "Terms",
+    "legal": "Legal",
     "made": "Made by students at BMS College of Engineering, Bengaluru."
   },
   "home": {
@@ -49,6 +61,7 @@
       }
     },
     "states": {
+      "eyebrow": "01 · What you'll see",
       "title": "Clear answers, not guesses",
       "eligible": "Eligible",
       "eligibleReason": "You meet all 5 conditions",
@@ -57,6 +70,7 @@
       "not": "Not eligible",
       "notReason": "This scheme is only for students from Maharashtra"
     },
+    "safetyEyebrow": "02 · Your safety",
     "safetyTitle": "Safe by design",
     "safety": {
       "official": "Every Apply button goes to the official portal.",
@@ -116,17 +130,72 @@
     "resend": "Resend email",
     "resending": "Sending…",
     "resent": "Sent! Check your inbox and spam folder.",
-    "loadError": "We couldn't load your account."
+    "loadError": "We couldn't load your account.",
+    "guideNoteTitle": "Guide and list, not apply",
+    "guideNote": "We tell you what to prepare and where to go. You apply on the official portal yourself."
   },
   "dashboard": {
-    "title": "Hi there 👋",
+    "eyebrow": "Home",
+    "title": "Help exists. Here's yours.",
     "subtitle": "You're logged in as {{email}}.",
+    "statsLabel": "Your numbers",
+    "noValue": "–",
+    "stats": {
+      "eligible": {
+        "label": "Eligible for",
+        "text": "Schemes you meet every condition for."
+      },
+      "closing": {
+        "label": "Closing in 14 days",
+        "text": "Matches with a deadline in the next two weeks."
+      },
+      "saved": {
+        "label": "Saved to apply",
+        "text": "Schemes you saved to your applications."
+      },
+      "offline": {
+        "label": "Offline visits needed",
+        "text": "Saved schemes that need papers handed in at an office."
+      }
+    },
+    "statsPending": "These numbers appear once matching is switched on. Filling your profile now means they'll be ready.",
+    "profileEyebrow": "01 · Your profile",
     "profileTitle": "Your profile",
     "profileComplete": "{{percent}}% complete",
     "matchesSoon": "The more you fill in, the more schemes we can check for you. Your matches will appear here soon.",
     "profileStart": "Start my profile",
     "profileContinue": "Continue my profile",
-    "profileEdit": "Edit my profile"
+    "profileEdit": "Edit my profile",
+    "applicationsEyebrow": "02 · My applications",
+    "applicationsTitle": "Your saved schemes",
+    "saveTitle": "Save a scheme",
+    "saveText": "Find a scheme and save it to keep its details and deadline here."
+  },
+  "comingSoon": {
+    "badge": "Coming soon",
+    "matches": {
+      "eyebrow": "My matches",
+      "title": "My matches",
+      "intro": "Every scheme checked against your profile, sorted into Eligible, Almost eligible and Not eligible, with the reason for each.",
+      "emptyTitle": "Your matches are on the way",
+      "emptyText": "Matching isn't switched on yet. Fill your profile now so your matches are ready the day it is."
+    },
+    "applications": {
+      "eyebrow": "My applications",
+      "title": "My applications",
+      "intro": "Keep track of what you've saved, what you've applied for and what needs renewing.",
+      "emptyTitle": "Save a scheme",
+      "emptyText": "Find a scheme and save it to keep its details and deadline here.",
+      "stages": "Your schemes will sit in three lists: Saved, Applied and Renewal due."
+    },
+    "browse": {
+      "eyebrow": "Browse",
+      "title": "Find any scheme",
+      "intro": "Search every scholarship, loan, fee waiver and grant, with or without a profile.",
+      "emptyTitle": "The scheme list is on the way",
+      "emptyText": "We're checking each scheme against its official source before listing it."
+    },
+    "profileCta": "Fill my profile"
   },
   "profile": {
     "stepOf": "Step {{current}} of {{total}}",

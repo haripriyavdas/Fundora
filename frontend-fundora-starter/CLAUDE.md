@@ -32,7 +32,7 @@ frontend-fundora-starter/
 - **API calls** go through `lib/api.ts` (`apiGet`, `apiPost`, …) from a `features/*/api.ts` file. Base URL is `/api/v1`, same origin, `credentials: 'include'`. Pages never call `fetch` directly.
 - **Mock data:** `features/schemes/mockData.ts` stays until each API route works. `VITE_USE_MOCK_DATA=false` switches to the real API.
 - **Every user-facing string goes through `t()`** with keys in `i18n/locales/en.json`. Kannada (`kn`) and Hindi (`hi`) come later, so no hard-coded text.
-- **Styling:** Tailwind classes using the tokens in `index.css`: `brand`, `accent`, `ink`, `muted`, `surface`, `line`, and the match colours `eligible` / `almost` / `not` / `info` (each with a `-bg`). Don't add a UI kit or new colours without updating `index.css`.
+- **Styling:** Tailwind classes using the tokens in `index.css` (full list in `docs/frontend.md`): red `brand` for actions, active nav and urgency only; charcoal `accent` for the sidebar and ink buttons; `ink` / `body` / `muted` text; cream `surface`, `tile`, `line`; and the match colours `eligible` / `almost` / `not` / `info` / `warn` (each with a `-bg`). No gradients, emoji or illustrations. Don't add a UI kit or new colours without updating `index.css`.
 - **Mobile-first.** Design at 360 px wide first. Students use low-end Android phones on slow networks, so lazy-load pages, use no heavy libraries and keep images small.
 - **Accessibility:** real buttons and links, labels on every input, visible focus, `aria-*` on custom widgets, colour never the only signal (match states also have a word and an icon).
 - **Match states** are `eligible`, `almost`, `not`, `unknown`. Always show the reason text next to the state.

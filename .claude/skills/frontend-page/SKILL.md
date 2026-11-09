@@ -12,7 +12,7 @@ Read `frontend-fundora-starter/CLAUDE.md` and `docs/frontend.md` first. Look at 
 1. **Route:** add it in `App.tsx`; logged-in pages go inside `AppLayout`. Lazy-load the page with `React.lazy`.
 2. **Data:** fetch through `features/<area>/api.ts` → `lib/api.ts`, with types from `@shared`. Keep fetch logic out of the page. Respect `VITE_USE_MOCK_DATA` until the API route exists.
 3. **Text:** every visible string uses `t('area.key')`; add keys to `i18n/locales/en.json`, grouped by page. Short, plain English for first-generation students.
-4. **Style:** Tailwind with the tokens in `index.css` (`brand`, `accent`, `ink`, `muted`, `surface`, `line`, `eligible`/`almost`/`not`/`info` + `-bg`). Cards `rounded-2xl border border-line bg-white`. No new colours or UI libraries.
+4. **Style:** Tailwind with the tokens in `index.css` (`brand` red for actions/urgency only, `accent` charcoal, `ink`/`body`/`muted`, `surface`, `tile`, `line`, `eligible`/`almost`/`not`/`info`/`warn` + `-bg`). Cards `rounded-2xl border border-line bg-white`, buttons from `components/ui/button.ts`, page tops with `PageHeader` (eyebrow + H1). No new colours, gradients, emoji or UI libraries.
 5. **Mobile first:** build at 360 px, then add `sm:`/`lg:` layouts. Tap targets at least 44 px. No horizontal scroll.
 6. **States:** loading (skeleton), empty (what to do next), error (retry), and for forms: inline field errors plus `animate-shake` on a failed submit.
 7. **Accessibility:** semantic HTML, labels tied to inputs, `aria-invalid`/`aria-describedby` for errors, focus visible, match states shown with icon + word + colour.

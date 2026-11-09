@@ -84,8 +84,12 @@ export function ProfileFieldInput({ def }: { def: FieldDef }) {
       return <YesNoInput name={def.name} label={label} hint={hint} error={error} />
     case 'check':
       return (
-        <label className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl border border-line bg-white px-3.5 py-2 text-base has-focus-visible:ring-2 has-focus-visible:ring-brand-soft">
-          <input type="checkbox" className="size-5 shrink-0 accent-brand" {...register(def.name)} />
+        <label className="flex min-h-11 cursor-pointer items-center gap-3 rounded-xl border border-line bg-white px-3.5 py-2 text-base has-focus-visible:ring-2 has-focus-visible:ring-line-strong">
+          <input
+            type="checkbox"
+            className="size-5 shrink-0 accent-accent"
+            {...register(def.name)}
+          />
           {label}
         </label>
       )

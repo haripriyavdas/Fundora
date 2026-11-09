@@ -30,7 +30,7 @@ export const SelectField = forwardRef<HTMLSelectElement, Props>(function SelectF
         aria-describedby={describedBy}
         className={cn(
           'min-h-11 w-full rounded-xl border bg-white px-3 text-base text-ink',
-          'focus:border-brand focus:ring-2 focus:ring-brand-soft focus:outline-none',
+          'focus:border-accent focus:ring-2 focus:ring-tile focus:outline-none',
           error ? 'border-not' : 'border-line',
         )}
         {...select}
