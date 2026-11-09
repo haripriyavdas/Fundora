@@ -68,17 +68,17 @@ Optional 1b: *"Add Google sign-in: POST /auth/google verifying the ID token with
 Shared
 - [x] `constants.ts`, `schemas/profile.ts`: `ProfileSchema`, `ProfileUpdateBody` (strict; `null` clears a field), `PROFILE_FIELDS`
 - [x] `profileCompleteness.ts`, used by `GET /me` and the wizard
-- [ ] `fieldApplies()` in `profileCompleteness.ts`: decide which fields don't apply to which students (until then, most students can't reach 100%)
+- [x] `fieldApplies()` in `profileCompleteness.ts` (2026-11-09): not counted are the other-scholarship name after a No, disability % and certificate after a No, CGPA in year 1, and the caste certificate for General. Each still counts while the answer it depends on is blank
 
 Server
 - [x] `services/crypto.ts` (AES-256-GCM), `models/Profile.ts`, `services/profile.ts`, `GET`/`PUT /profile` with partial saves and a `profileVersion` bump
 - [x] Tests that need no database: encryption, Mongo update building, model paths
-- [ ] `routes/profile.test.ts` written but **not run yet**: run `npm test` where local ports are allowed
+- [x] `routes/profile.test.ts` runs and passes (27 tests, 2026-11-09)
 
 Client
 - [x] `/profile`: 5-step wizard with React Hook Form + Zod, saving after each step, all text through i18n
 - [x] Component tests in `ProfilePage.test.tsx` (API mocked)
-- [ ] Check `npm run dev` by hand at 360 px and on desktop, against a real database
+- [x] Checked `npm run dev` by hand at 360 px and on desktop, against a real database (2026-11-09)
 
 > **Prompt:**
 > Read docs/database.md (profiles) and docs/security.md. Create ProfileSchema and PROFILE_FIELDS in src/shared/schemas/profile.ts with every field listed in database.md, the Profile model, services/crypto.ts (AES-256-GCM for familyIncome, category, disability) and GET/PUT /api/v1/profile with partial saves and a profileVersion bump. Test that the stored values are encrypted. Then build the 5-step profile wizard at /profile in src/client with React Hook Form + Zod, saving after each step, all text through i18n, mobile-first, using the existing design tokens. Use the frontend-page skill.

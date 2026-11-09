@@ -10,12 +10,26 @@ export function readProfileField(profile: ProfileFields, field: ProfileField): u
     .reduce<unknown>((value, key) => (value as Record<string, unknown> | undefined)?.[key], profile)
 }
 
-/** Does this field apply to this student? Fields that don't apply aren't counted either way. */
+/**
+ * Does this field apply to this student? Fields that don't apply aren't counted either way.
+ * A field still applies while the answer it depends on is blank.
+ */
 function fieldApplies(field: ProfileField, profile: ProfileFields): boolean {
-  // TODO(human): decide which fields don't apply to which students.
-  void field
-  void profile
-  return true
+  switch (field) {
+    // The wizard only asks for the name after a Yes
+    case 'otherScholarshipName':
+      return profile.hasOtherScholarship !== false
+    case 'disability.percent':
+    case 'docs.disabilityCertificate':
+      return profile.disability?.has !== false
+    // First years have no CGPA yet
+    case 'cgpa':
+      return profile.yearOfStudy !== 1
+    case 'docs.casteCertificate':
+      return profile.category !== 'GEN'
+    default:
+      return true
+  }
 }
 
 /** 0–100. Rounds down, so 100 always means nothing is left to fill. */
