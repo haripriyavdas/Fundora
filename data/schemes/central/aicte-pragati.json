@@ -17,12 +17,13 @@
   "states": ["ALL"],
   "groups": ["girls"],
 
-  "amount": "Up to ₹50,000 / year",
+  "amount": "₹50,000 / year",
   "amountMax": 50000,
+  "closesOn": "2026-11-30",
   "mode": "online",
-  "portal": { "name": "AICTE (official site)", "url": "https://aicte.gov.in" },
-  "sourceUrl": "https://aicte.gov.in/sites/default/files/Pragati%20Scheme%20Guidelines.pdf",
-  "verifiedOn": "2026-11-12",
+  "portal": { "name": "National Scholarship Portal", "url": "https://scholarships.gov.in" },
+  "sourceUrl": "https://scholarships.gov.in/All-Scholarships",
+  "verifiedOn": "2026-11-13",
 
   "about": "An AICTE scheme to support girls studying technical education. 2,000 scholarships a year go to degree students (and 2,000 to diploma students), chosen on merit.",
   "benefits": [
@@ -106,12 +107,12 @@
   ],
   "steps": [
     {
-      "title": "Check this year's notice",
-      "text": "Read AICTE's current Pragati notice for the dates and the apply link."
+      "title": "Register on the National Scholarship Portal",
+      "text": "Create your account on the National Scholarship Portal before the last date."
     },
     {
-      "title": "Apply on the official portal",
-      "text": "Apply on the official portal yourself and upload the documents listed here."
+      "title": "Apply for Pragati",
+      "text": "Choose the AICTE Pragati scholarship, fill the form yourself and upload the documents listed here."
     }
   ],
   "officialDocuments": [
@@ -123,9 +124,8 @@
     }
   ],
   "notes": [
-    "UNVERIFIED: the source PDF is the guidelines for renewals submitted for 2020 (page 1) and fresh/renewal cases up to 2019 (page 2). Amounts and the ₹8 lakh limit need checking against the current AICTE notice.",
-    "UNVERIFIED: no last date in the source; closesOn left out.",
-    "UNVERIFIED: the PDF doesn't name the apply portal; portal set to aicte.gov.in. Replace with the real apply link (likely NSP) once confirmed.",
+    "2026-11-13: amount (₹50,000 a year), income limit (₹8,00,000 a year), last date (30 Nov 2026) and apply link (NSP) verified by the team against https://scholarships.gov.in/All-Scholarships.",
+    "Benefit breakdown, documents and eligibility wording still come from the 2019–2020 AICTE guidelines PDF (in officialDocuments); re-check them against the current notice.",
     "UNVERIFIED: mode set to online; the PDF doesn't say whether hard copies are needed.",
     "UNVERIFIED: the course list is not in the source, which only says 'technical degree course in an AICTE-approved institution'. The courseCategory list is the AICTE-approved categories Fundora has; review it.",
     "amountMax 50,000 = ₹30,000 + ₹2,000 × 10 months, as stated in the 2020 page.",
