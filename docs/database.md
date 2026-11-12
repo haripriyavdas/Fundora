@@ -49,10 +49,11 @@ Written **only** by `scripts/seed.ts` from `data/schemes/**/*.json`. Same fields
 | Field | Notes |
 | --- | --- |
 | `status` | `active` or `retired` (file deleted) |
-| `dataVersion` | int, set by the seed run |
+| `dataVersion` | int, set by the seed run that last changed this scheme; the collection's highest value is the current data version |
+| `contentHash` | SHA-256 of the file's content, so a re-seed only bumps `dataVersion` for schemes that really changed |
 | `seededAt` | Date |
 
-Indexes: `{ id: 1 }` unique, `{ status: 1, level: 1, courses: 1, states: 1 }`, `{ closesOn: 1 }`, text or Atlas Search on `name`, `provider`, `about`.
+Model: `src/server/models/Scheme.ts`. Indexes: `{ id: 1 }` unique, `{ status: 1, level: 1, courses: 1 }`, `{ status: 1, states: 1 }` (MongoDB can't index two arrays in one compound index), `{ closesOn: 1 }`, text on `name`, `provider`, `about`.
 
 ### applications (saved schemes / tracker)
 | Field | Notes |

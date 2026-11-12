@@ -30,7 +30,7 @@
 | `EMAIL_API_KEY` | ✓* | provider key (*not needed with `console`) |
 | `EMAIL_FROM` | ✓ | `Fundora <hello@yourdomain>` |
 | `TEAM_INBOX` | ✓ | where reports and link-check emails go |
-| `GOOGLE_CLIENT_ID` | | enables Google sign-in (server + `VITE_GOOGLE_CLIENT_ID`) |
+| `GOOGLE_CLIENT_ID` | | enables Google sign-in. The browser uses it too, unless `VITE_GOOGLE_CLIENT_ID` is set. Add the site's address (and `http://localhost:3000` for dev) under **Authorized JavaScript origins** in Google Cloud Console. No client secret is used. |
 | `SENTRY_DSN` | | error tracking |
 | `VITE_USE_MOCK_DATA` | | `true` until the API is ready; `false` in prod |
 | `VITE_POSTHOG_KEY` | | analytics |

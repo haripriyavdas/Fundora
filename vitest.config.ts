@@ -13,7 +13,11 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    include: ['src/**/*.test.ts', 'frontend-fundora-starter/**/*.test.{ts,tsx}'],
+    include: [
+      'src/**/*.test.ts',
+      'scripts/**/*.test.ts',
+      'frontend-fundora-starter/**/*.test.{ts,tsx}',
+    ],
     setupFiles: ['src/server/test/env.ts'],
     // mongodb-memory-server needs time to start on the first run
     hookTimeout: 60_000,

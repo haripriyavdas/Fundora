@@ -51,10 +51,10 @@ npm start                   # production server
 npm test                    # Vitest (unit + API)
 npm run test:e2e            # Playwright
 npm run lint && npm run typecheck
-npm run validate-schemes    # check every file in data/schemes
-npm run check-scheme -- data/schemes/central/<id>.json
-npm run seed                # upsert data/schemes into MongoDB
-npm run import-sheet -- <file.csv>
+npm run validate-schemes    # check every file in data/schemes (or: -- <file> …)
+npm run check-scheme -- data/schemes/central/<id>.json   # Phase 4
+npm run seed                # upsert data/schemes into MongoDB (-- --dry-run to preview)
+npm run import-sheet -- <file.csv> [--force]
 ```
 
 Update this section when scripts change.

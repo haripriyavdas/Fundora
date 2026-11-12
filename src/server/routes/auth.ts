@@ -1,6 +1,7 @@
 import { Router, type Response } from 'express'
 import {
   ForgotBody,
+  GoogleAuthBody,
   LoginBody,
   RegisterBody,
   ResetBody,
@@ -11,6 +12,7 @@ import { requireAuth, userId } from '../middleware/requireAuth.js'
 import { validate } from '../middleware/validate.js'
 import { toPublicUser, type UserDoc } from '../models/User.js'
 import {
+  googleSignIn,
   loginStudent,
   registerStudent,
   requestPasswordReset,
@@ -45,6 +47,12 @@ authRouter.post('/resend-verification', requireAuth, async (req, res) => {
 
 authRouter.post('/login', validate({ body: LoginBody }), async (req, res) => {
   const user = await loginStudent(req.body as LoginBody)
+  startSession(res, user)
+  res.json({ user: toPublicUser(user) } satisfies UserResponse)
+})
+
+authRouter.post('/google', validate({ body: GoogleAuthBody }), async (req, res) => {
+  const user = await googleSignIn(req.body as GoogleAuthBody)
   startSession(res, user)
   res.json({ user: toPublicUser(user) } satisfies UserResponse)
 })

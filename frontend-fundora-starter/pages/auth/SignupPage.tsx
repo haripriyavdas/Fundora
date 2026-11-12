@@ -10,6 +10,7 @@ import { setStudent, useSession } from '@/features/auth/session'
 import { ApiError } from '@/lib/api'
 import { cn } from '@/lib/cn'
 import { AuthLayout } from './AuthLayout'
+import { GoogleButton, OrDivider } from './GoogleButton'
 import { apiErrorMessage, checkFields, useShake, type FieldErrors } from './formHelpers'
 
 export default function SignupPage() {
@@ -134,6 +135,21 @@ export default function SignupPage() {
           {busy ? t('auth.creating') : t('auth.signupSubmit')}
         </button>
       </form>
+      <div className="mt-4 space-y-4">
+        <OrDivider />
+        {/* Uses the same privacy box as the form above */}
+        <GoogleButton
+          mode="signup"
+          to="/dashboard"
+          consent={values.consent}
+          onBusy={setBusy}
+          onError={(err) => {
+            setFormError(apiErrorMessage(t, err))
+            setEmailTaken(err instanceof ApiError && err.code === 'EMAIL_TAKEN')
+            shake()
+          }}
+        />
+      </div>
     </AuthLayout>
   )
 }

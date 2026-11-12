@@ -1,5 +1,6 @@
 import type {
   ForgotBody,
+  GoogleAuthBody,
   LoginBody,
   MeResponse,
   RegisterBody,
@@ -10,6 +11,7 @@ import { apiGet, apiPost } from '@/lib/api'
 
 export const register = (body: RegisterBody) => apiPost<UserResponse>('/auth/register', body)
 export const login = (body: LoginBody) => apiPost<UserResponse>('/auth/login', body)
+export const googleSignIn = (body: GoogleAuthBody) => apiPost<UserResponse>('/auth/google', body)
 export const logout = () => apiPost<void>('/auth/logout')
 export const verifyEmail = (token: string) => apiPost<UserResponse>('/auth/verify', { token })
 export const resendVerification = () => apiPost<void>('/auth/resend-verification')

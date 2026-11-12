@@ -19,7 +19,7 @@ Fundora holds income, caste category and disability data about students, so priv
 | Passwords | bcrypt cost 12, minimum 8 characters, checked against a small common-password list |
 | Sessions | JWT in `fundora_session` cookie: httpOnly, Secure (prod), SameSite=Lax, 7-day expiry; `JWT_SECRET` ≥ 32 random bytes |
 | CSRF | Same-origin + SameSite=Lax cookie; state-changing routes accept only `application/json` |
-| Headers | `helmet()` with a CSP that allows only self, Google sign-in and PostHog |
+| Headers | `helmet()` with a CSP that allows only self, Google sign-in and PostHog; `Cross-Origin-Opener-Policy: same-origin-allow-popups` and `Referrer-Policy: strict-origin-when-cross-origin`, which Google's sign-in popup needs |
 | Input | Zod on every body, param and query; `express.json({ limit: '100kb' })`; Mongoose `strictQuery`; never pass raw request objects into queries (blocks `$` operator injection) |
 | Access | Every student route filters by `req.user.id`; another student's resources return 404 |
 | Rate limits | auth 10/min/IP, report 5/hour/user, global 100/min/IP |

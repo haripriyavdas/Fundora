@@ -56,7 +56,7 @@ Jobs must be safe to run twice (check `sentAt` before sending). On Render's free
 
 - **Register:** validate → bcrypt hash (cost 12) → create user (`verified: false`, `consentAt`) → email a verification link (token valid 24 h).
 - **Login:** verify password → set cookie `fundora_session` (JWT `{ sub: userId }`, 7 days, httpOnly, Secure in prod, SameSite=Lax).
-- **Google (optional):** client gets a Google ID token → `POST /auth/google` → verify with google-auth-library (audience = `GOOGLE_CLIENT_ID`) → find or create the user by email (`verified: true`) → set the cookie.
+- **Google (optional, on when `GOOGLE_CLIENT_ID` is set):** Google's button (Google Identity Services, `lib/googleAuth.ts`) gives the client an ID token → `POST /auth/google` → `services/google.ts` verifies it with google-auth-library (signature, expiry, audience = `GOOGLE_CLIENT_ID`) → **refused unless Google says `email_verified`** → find the user by `googleId`; else link to the account with the same email (sets `googleId`, `verified: true`); else create one, which needs `consent: true` (the signup page's privacy box, so the login page can't create accounts) → set the cookie. Only `googleId` and `email` are stored: no Google token, name or picture. No client secret is needed.
 - **Reset:** `POST /auth/forgot` always returns 200 (doesn't reveal whether an email exists) → emailed token valid 1 h → `POST /auth/reset`.
 - Unverified users can log in and build a profile but get a banner; reminder emails are only sent to verified users.
 

@@ -61,6 +61,8 @@ Docs
 
 Optional 1b: *"Add Google sign-in: POST /auth/google verifying the ID token with google-auth-library, and wire src/client/lib/googleAuth.ts to Google Identity Services."*
 
+- [x] 1b done (2026-11-11): `POST /auth/google` (verified Google emails only; links by `googleId`, then email; new accounts need consent), `services/google.ts`, Google button on `/login` and `/signup`, 13 Supertest tests with the Google check stubbed. Still to do by hand: sign in with a real Google account in the browser
+
 ## Phase 2 — Student profile (weeks 2–3)
 
 ### Phase 2 — implementation checklist (2026-11-04)
@@ -84,6 +86,22 @@ Client
 > Read docs/database.md (profiles) and docs/security.md. Create ProfileSchema and PROFILE_FIELDS in src/shared/schemas/profile.ts with every field listed in database.md, the Profile model, services/crypto.ts (AES-256-GCM for familyIncome, category, disability) and GET/PUT /api/v1/profile with partial saves and a profileVersion bump. Test that the stored values are encrypted. Then build the 5-step profile wizard at /profile in src/client with React Hook Form + Zod, saving after each step, all text through i18n, mobile-first, using the existing design tokens. Use the frontend-page skill.
 
 ## Phase 3 — Scheme data pipeline (weeks 3–5)
+
+### Phase 3 — implementation checklist (2026-11-09)
+
+Shared
+- [x] `schemas/rule.ts`: `RuleSchema`, `RULE_OPERATORS`; each rule's value is checked against the profile field's type and options
+- [x] `schemas/scheme.ts`: `SchemeFileSchema` (strict, https-only links, `offline` required for `onlineAndOffline`, `ALL` only on its own), value lists
+- [ ] `SchemeSchema` (API shape, no `rules`): with the schemes routes in Phase 4
+
+Server
+- [x] `models/Scheme.ts` with `status`, `dataVersion`, `contentHash`, `seededAt` and the indexes in `database.md`
+
+Scripts
+- [x] `validate-schemes`, `seed` (`--dry-run`, retire instead of delete, `dataVersion` bumped only on change), `import-sheet` (papaparse), shared code in `scripts/lib` with tests
+- [x] `_example.json` passes; seed checked on `fundora_dev`: add → no change → update → retire
+- [x] CI already runs `validate-schemes` and the seed job on push to `main`; it now passes with the empty folder
+- [ ] Client Scheme type: there's no client scheme code yet; the scheme pages will use `@shared` types from the start
 
 > **Prompt:**
 > Read docs/scheme-data.md and data/schemes/CLAUDE.md. Create SchemeFileSchema and RuleSchema in src/shared/schemas, the Scheme model, and the scripts validate-schemes, seed (with --dry-run) and import-sheet. Make data/schemes/_example.json pass validation. Add validate-schemes to CI and a seed job on push to main (see docs/deployment.md). Replace the client's Scheme type in src/client/features/schemes/types.ts with types inferred from the shared schema, keeping the fields the UI already uses.

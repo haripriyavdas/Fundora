@@ -36,6 +36,15 @@ export const ForgotBody = z.object({ email: EmailSchema })
 
 export const ResetBody = TokenBody.extend({ password: NewPasswordSchema })
 
+/**
+ * Google sign-in: the ID token from Google's button. `consent` is required only when this
+ * creates a new account, so the signup page sends it and the login page doesn't.
+ */
+export const GoogleAuthBody = z.object({
+  idToken: z.string().min(20).max(4096),
+  consent: z.literal(true).optional(),
+})
+
 export const PublicUserSchema = z.object({
   id: z.string(),
   email: z.string(),
@@ -55,6 +64,7 @@ export type LoginBody = z.infer<typeof LoginBody>
 export type TokenBody = z.infer<typeof TokenBody>
 export type ForgotBody = z.infer<typeof ForgotBody>
 export type ResetBody = z.infer<typeof ResetBody>
+export type GoogleAuthBody = z.infer<typeof GoogleAuthBody>
 export type PublicUser = z.infer<typeof PublicUserSchema>
 export type UserResponse = z.infer<typeof UserResponse>
 export type MeResponse = z.infer<typeof MeResponse>
