@@ -36,7 +36,14 @@ export function createApp({ mountClient, rateLimits }: AppOptions = {}): Express
   if (isProd) app.set('trust proxy', 1)
 
   // Vite's dev server injects inline scripts for hot reload, so CSP is enforced in production only
-  app.use(helmet({ contentSecurityPolicy: isProd ? { directives: cspDirectives } : false }))
+  app.use(
+    helmet({
+      contentSecurityPolicy: isProd ? { directives: cspDirectives } : false,
+      // Google's sign-in popup has to report back to this page, and Google checks the origin
+      crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
+      referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+    }),
+  )
   app.use(express.json({ limit: '100kb' }))
   app.use(cookieParser())
   app.use((req, res, next) => {

@@ -52,10 +52,22 @@ State codes and every other value list a rule can compare against are in `src/sh
 
 | Script | Does |
 | --- | --- |
-| `validate-schemes` | Parses every non-`_` file with `SchemeFileSchema`; checks `id` = file name, unique ids, rule fields exist in `PROFILE_FIELDS`, operators valid, URLs are https, `offline` present when needed. Warns (doesn't fail) when `verifiedOn` is over 90 days old or `closesOn` has passed. Exit code 1 on any error. |
-| `check-scheme <file>` | Runs `evaluate()` against the fixture profiles and prints a table: profile, state, reason. |
-| `seed` | Validates, then upserts each scheme by `id` with a new `dataVersion`, sets `status: retired` on ids no longer in the folder, prints added / updated / retired counts. Needs `MONGODB_URI`. Supports `--dry-run`. |
-| `import-sheet <csv>` | Converts sheet rows to JSON files (uses papaparse), then runs validate on them. |
+| `validate-schemes [files…]` | Parses every non-`_` file (or just the files named) with `SchemeFileSchema`; checks `id` = file name (not for `_` files), unique ids, rule fields exist in `PROFILE_FIELDS`, operators valid, each rule's value has the right type and is one of the field's options (so `"Female"` or `"General"` fail), URLs are https, `offline` present when needed, `verifiedOn` not in the future. Warns (doesn't fail) when `verifiedOn` is over 90 days old or `closesOn` has passed (dates in India time). Exit code 1 on any error. |
+| `check-scheme <file>` | Runs `evaluate()` against the fixture profiles and prints a table: profile, state, reason. (Phase 4, needs the engine.) |
+| `seed [--dry-run]` | Validates, then upserts new and changed schemes by `id`, sets `status: retired` on ids no longer in the folder, prints added / updated / retired / unchanged. Bumps `dataVersion` once per run, and only when something changed, so match caches aren't rebuilt for nothing. Needs only `MONGODB_URI` (environment or `.env`). `--dry-run` reads the database but writes nothing. Code: `scripts/seed.ts`, plan logic in `scripts/lib/seedPlan.ts`. |
+| `import-sheet <csv> [--force]` | Converts sheet rows to JSON files (papaparse), then validates them. Existing files are skipped unless `--force`. |
+
+### Sheet columns (`import-sheet`)
+
+Columns are the JSON field names, in any order. Unknown columns are an error, so a typo in a header is caught.
+
+- **Plain text:** `id`, `name`, `provider`, `providerType`, `aidType`, `level`, `amount`, `opensOn`, `closesOn` (`null` or `open all year` for no deadline), `mode`, `sourceUrl`, `verifiedOn`, `about`.
+- **Code lists**, comma-separated or one per line: `courses`, `states`, `groups`.
+- **Sentence lists**, one per line in the cell (Alt+Enter): `benefits`, `eligibilityText`, `notes`.
+- **Number:** `amountMax` (`25,000` is fine).
+- **JSON, same shape as the file:** `rules`, `renewal`, `documents`, `steps`, `offline`, `officialDocuments`, `importantDates`, `helpline`.
+- **Portal:** `portalName` + `portalUrl`.
+- **`folder`** (optional): where the file goes. Defaults: `central` → `central/`, `private` and `bank` → `private/`, a Karnataka-only state scheme → `karnataka/`. Other state schemes need it (for example `maharashtra`).
 
 ## Launch target
 

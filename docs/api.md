@@ -19,8 +19,8 @@ Errors always look like `{ "error": { "code": "VALIDATION_FAILED", "message": "�
 | GET | `/me` | student | — | `{ user: { id, email, verified }, profileComplete: number }` |
 | GET | `/profile` | student | — | `Profile` (decrypted, own only); `{ profileVersion: 0 }` before the first save |
 | PUT | `/profile` | student | partial `Profile`: a missing field is unchanged, `null` clears it, `docs` flags merge; unknown keys are a 400 | `Profile`; bumps `profileVersion` |
-| GET | `/schemes` | public* | `?q=&aidType=&providerType=&group=&state=&openOnly=&sort=` | `Scheme[]`, each with `match` when logged in, else `match.state = "unknown"` |
-| GET | `/schemes/:id` | public* | — | `Scheme` with `eligibility[]` (rule text + met/notMet/unknown) when logged in |
+| GET | `/schemes` | public* | `?q=&aidType=&providerType=&group=&state=&openOnly=true&sort=match\|closing\|amount\|name` | `Scheme[]`, each with `match` when logged in, else `match.state = "unknown"`. Sort defaults to `match` when logged in, `closing` otherwise. Bad values → 400 |
+| GET | `/schemes/:id` | public* | — | `Scheme` with `eligibility[]` (rule text + met/notMet/near/unknown) when logged in; 404 for unknown or retired ids |
 | GET | `/saved` | student | — | `SavedScheme[]` |
 | POST | `/saved` | student | `{ schemeId }` | 201 `SavedScheme` (stage `saved`); creates reminder notifications |
 | PATCH | `/saved/:schemeId` | student | `{ stage: "saved" \| "applied" \| "renewal_due", notes? }` | `SavedScheme` |
@@ -41,8 +41,10 @@ There are **no** write routes for schemes and **no** admin or role-based routes.
 `Scheme` = everything in the scheme JSON file (see `scheme-data.md`) **minus** `rules`, plus computed fields:
 - `isOpen` (from `opensOn`/`closesOn` and today in IST)
 - `match: { state: "eligible" | "almost" | "not" | "unknown", reason: string, score: number }`
-- `eligibility?: { rule: string, result: "met" | "notMet" | "unknown" }[]` on the detail route
-- `popularity` (rank by saves in the last 30 days)
+- `eligibility?: { rule: string, result: "met" | "notMet" | "near" | "unknown", text: string }[]` on the detail route
+- `popularity` (rank by saves in the last 30 days), added with the tracker in Phase 6
+
+The team's internal `notes` are never sent either. Shapes: `SchemeSchema`, `SchemesQuery` in `src/shared/schemas/scheme.ts`.
 
 Raw `rules` stay server-side so the client can't drift from the engine, but the reasons explain each one.
 

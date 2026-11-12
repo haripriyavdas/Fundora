@@ -1,8 +1,14 @@
 import bcrypt from 'bcrypt'
-import type { LoginBody, RegisterBody, ResetBody } from '../../shared/schemas/index.js'
+import type {
+  GoogleAuthBody,
+  LoginBody,
+  RegisterBody,
+  ResetBody,
+} from '../../shared/schemas/index.js'
 import { HttpError } from '../lib/httpError.js'
 import { User, type UserDoc } from '../models/User.js'
 import { sendPasswordResetEmail, sendVerificationEmail } from './email.js'
+import { verifyGoogleIdToken } from './google.js'
 import { createOneTimeToken, hashToken, RESET_TOKEN_TTL_MS, VERIFY_TOKEN_TTL_MS } from './tokens.js'
 
 const BCRYPT_COST = 12
@@ -81,6 +87,67 @@ export async function loginStudent({ email, password }: LoginBody): Promise<User
     throw new HttpError(401, 'INVALID_CREDENTIALS', 'That email and password don’t match.')
   }
   return user
+}
+
+/**
+ * Google sign-in. Only accepts accounts whose email Google has verified. Finds the student by
+ * Google id, then by email (linking Google to an existing account), else creates one, which
+ * needs the same privacy consent as signing up with a password. Stores only googleId and email.
+ */
+export async function googleSignIn({ idToken, consent }: GoogleAuthBody): Promise<UserDoc> {
+  const google = await verifyGoogleIdToken(idToken)
+  if (!google.emailVerified) {
+    throw new HttpError(
+      401,
+      'GOOGLE_EMAIL_UNVERIFIED',
+      'Your Google account’s email isn’t verified. Verify it with Google, or sign up with email.',
+    )
+  }
+
+  const known = await User.findOne({ googleId: google.googleId })
+  if (known) return known
+
+  // Google has just proved they own this email, so link it and mark the account verified
+  const linked = await User.findOneAndUpdate(
+    { email: google.email, googleId: { $exists: false } },
+    {
+      $set: { googleId: google.googleId, verified: true },
+      $unset: { verifyTokenHash: 1, verifyTokenExpiresAt: 1 },
+    },
+    { returnDocument: 'after' },
+  )
+  if (linked) return linked
+
+  if (await User.exists({ email: google.email })) {
+    // The email belongs to an account already linked to a different Google account
+    throw new HttpError(
+      409,
+      'EMAIL_TAKEN',
+      'An account with this email already exists. Try logging in.',
+    )
+  }
+  if (consent !== true) {
+    throw new HttpError(
+      400,
+      'CONSENT_REQUIRED',
+      'There’s no Fundora account for this Google account yet. Sign up first.',
+    )
+  }
+  try {
+    return await User.create({
+      email: google.email,
+      googleId: google.googleId,
+      verified: true,
+      consentAt: new Date(),
+    })
+  } catch (err) {
+    // Two sign-ins at once: the other one created the account
+    if (isDuplicateKey(err)) {
+      const user = await User.findOne({ googleId: google.googleId })
+      if (user) return user
+    }
+    throw err
+  }
 }
 
 /** Always succeeds from the caller's view, so it never reveals whether an email is registered. */

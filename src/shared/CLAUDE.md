@@ -13,13 +13,17 @@ src/shared/
 │   ├── scheme.ts          ← SchemeFileSchema (data/schemes JSON) + SchemeSchema (API shape)
 │   ├── rule.ts            ← RuleSchema, operators
 │   ├── saved.ts           ← SavedSchemeSchema, stages: saved | applied | renewal_due
+│   ├── match.ts           ← MatchResultSchema: state, score, reasons, card reason
 │   ├── auth.ts            ← register, login, reset bodies
 │   └── index.ts           ← re-exports + inferred types (z.infer)
 ├── eligibility/
-│   ├── evaluate.ts        ← evaluate(profile, scheme) → { state, score, reasons }
+│   ├── evaluate.ts        ← evaluate(profile, scheme, today) → { state, score, reasons, reason }
 │   ├── operators.ts       ← eq, in, notIn, lte, gte, between, exists, isTrue
 │   ├── reasons.ts         ← plain-language reason templates per operator
+│   ├── labels.ts          ← English words for fields and values used in reasons
+│   ├── fixtures/          ← made-up sample students (tests + check-scheme)
 │   └── evaluate.test.ts   ← boundary tests
+├── dates.ts               ← todayInIndia, daysBetween, ageOn, isSchemeOpen (pure; callers pass dates in)
 ├── profileCompleteness.ts ← profile percentage for GET /me and the wizard
 └── constants.ts           ← course categories, states, categories (GEN/OBC/SC/ST/EWS), other value lists
 ```

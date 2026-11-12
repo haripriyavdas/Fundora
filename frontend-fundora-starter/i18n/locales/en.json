@@ -119,10 +119,19 @@
     "creating": "Creating account…",
     "sending": "Sending…",
     "saving": "Saving…",
+    "google": {
+      "signup": "Sign up with Google",
+      "consentFirst": "Tick the privacy notice box above to sign up with Google.",
+      "unavailable": "Google sign-in couldn't load. Check your connection, or use your email below."
+    },
     "errors": {
       "INVALID_CREDENTIALS": "That email and password don't match.",
       "EMAIL_TAKEN": "An account with this email already exists. Try logging in.",
-      "INVALID_TOKEN": "This link is invalid or has expired. Please request a new one."
+      "INVALID_TOKEN": "This link is invalid or has expired. Please request a new one.",
+      "CONSENT_REQUIRED": "There's no Fundora account for this Google account yet.",
+      "GOOGLE_EMAIL_UNVERIFIED": "Your Google account's email isn't verified. Verify it with Google, or sign up with your email.",
+      "INVALID_GOOGLE_TOKEN": "Google sign-in didn't work. Please try again.",
+      "GOOGLE_DISABLED": "Google sign-in isn't available right now. Use your email instead."
     }
   },
   "app": {
@@ -140,6 +149,9 @@
     "subtitle": "You're logged in as {{email}}.",
     "statsLabel": "Your numbers",
     "noValue": "–",
+    "loadingValue": "…",
+    "statsError": "We couldn't load your matches.",
+    "retry": "Try again",
     "stats": {
       "eligible": {
         "label": "Eligible for",
@@ -158,11 +170,11 @@
         "text": "Saved schemes that need papers handed in at an office."
       }
     },
-    "statsPending": "These numbers appear once matching is switched on. Filling your profile now means they'll be ready.",
+    "statsPending": "Saved and offline numbers appear once you can save schemes. The more of your profile you fill, the more schemes we can check.",
     "profileEyebrow": "01 · Your profile",
     "profileTitle": "Your profile",
     "profileComplete": "{{percent}}% complete",
-    "matchesSoon": "The more you fill in, the more schemes we can check for you. Your matches will appear here soon.",
+    "matchesSoon": "The more you fill in, the more schemes we can check for you.",
     "profileStart": "Start my profile",
     "profileContinue": "Continue my profile",
     "profileEdit": "Edit my profile",

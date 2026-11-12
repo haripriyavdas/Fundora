@@ -7,8 +7,10 @@ import { button } from '@/components/ui/button'
 import { TextField } from '@/components/ui/TextField'
 import { login } from '@/features/auth/api'
 import { setStudent, useSession } from '@/features/auth/session'
+import { ApiError } from '@/lib/api'
 import { cn } from '@/lib/cn'
 import { AuthLayout } from './AuthLayout'
+import { GoogleButton, OrDivider } from './GoogleButton'
 import { apiErrorMessage, checkFields, useShake, type FieldErrors } from './formHelpers'
 
 export default function LoginPage() {
@@ -20,6 +22,7 @@ export default function LoginPage() {
   const [values, setValues] = useState({ email: '', password: '' })
   const [errors, setErrors] = useState<FieldErrors>({})
   const [formError, setFormError] = useState('')
+  const [noAccount, setNoAccount] = useState(false)
   const [busy, setBusy] = useState(false)
 
   // Where AppLayout sent the student from, if anywhere
@@ -29,6 +32,7 @@ export default function LoginPage() {
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
     setFormError('')
+    setNoAccount(false)
     const checked = checkFields(LoginBody, values)
     if (checked.errors) {
       setErrors(checked.errors)
@@ -60,13 +64,35 @@ export default function LoginPage() {
         </>
       }
     >
+      <div className="mb-4 space-y-4">
+        <GoogleButton
+          mode="signin"
+          to={from}
+          onBusy={setBusy}
+          onError={(err) => {
+            setNoAccount(err instanceof ApiError && err.code === 'CONSENT_REQUIRED')
+            setFormError(apiErrorMessage(t, err))
+            shake()
+          }}
+        />
+        <OrDivider />
+      </div>
       <form
         noValidate
         onSubmit={onSubmit}
         className={cn('space-y-4', shakeClass)}
         onAnimationEnd={onAnimationEnd}
       >
-        {formError && <Alert tone="error">{formError}</Alert>}
+        {formError && (
+          <Alert tone="error">
+            {formError}{' '}
+            {noAccount && (
+              <Link to="/signup" className="font-semibold text-brand underline">
+                {t('auth.createAccount')}
+              </Link>
+            )}
+          </Alert>
+        )}
         <TextField
           label={t('auth.email')}
           type="email"

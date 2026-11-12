@@ -11,7 +11,7 @@ The React app in `frontend-fundora-starter`, built by Vite into `dist/client` an
 | `/forgot`, `/reset-password` | Password reset | public | built (live API) |
 | `/verify-email` | Confirms the emailed token | public | built (live API) |
 | `/profile` | 5-step wizard: education → marks & attendance → family & income → category & background → documents held | student | built (live API) |
-| `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | stat tiles (empty until matching), profile card, "Save a scheme" tile |
+| `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | "Eligible for" and "Closing in 14 days" tiles from `GET /schemes` (saved and offline wait for the tracker), profile card, "Save a scheme" tile |
 | `/matches` | Tabs Eligible / Almost / Not eligible, filters (type, amount, deadline, provider, group), sort | student | to build (coming-soon page in the sidebar for now) |
 | `/browse` | All schemes, search, filters; no account needed | public | to build (coming-soon page inside the logged-in shell for now) |
 | `/schemes/:schemeId` | Full scheme page with match reasons and Apply button | public | to build |

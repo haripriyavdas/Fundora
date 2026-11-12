@@ -61,6 +61,8 @@ Docs
 
 Optional 1b: *"Add Google sign-in: POST /auth/google verifying the ID token with google-auth-library, and wire src/client/lib/googleAuth.ts to Google Identity Services."*
 
+- [x] 1b done (2026-11-11): `POST /auth/google` (verified Google emails only; links by `googleId`, then email; new accounts need consent), `services/google.ts`, Google button on `/login` and `/signup`, 13 Supertest tests with the Google check stubbed. Still to do by hand: sign in with a real Google account in the browser
+
 ## Phase 2 — Student profile (weeks 2–3)
 
 ### Phase 2 — implementation checklist (2026-11-04)
@@ -85,12 +87,47 @@ Client
 
 ## Phase 3 — Scheme data pipeline (weeks 3–5)
 
+### Phase 3 — implementation checklist (2026-11-09)
+
+Shared
+- [x] `schemas/rule.ts`: `RuleSchema`, `RULE_OPERATORS`; each rule's value is checked against the profile field's type and options
+- [x] `schemas/scheme.ts`: `SchemeFileSchema` (strict, https-only links, `offline` required for `onlineAndOffline`, `ALL` only on its own), value lists
+- [x] `SchemeSchema` (API shape, no `rules`): done in Phase 4
+
+Server
+- [x] `models/Scheme.ts` with `status`, `dataVersion`, `contentHash`, `seededAt` and the indexes in `database.md`
+
+Scripts
+- [x] `validate-schemes`, `seed` (`--dry-run`, retire instead of delete, `dataVersion` bumped only on change), `import-sheet` (papaparse), shared code in `scripts/lib` with tests
+- [x] `_example.json` passes; seed checked on `fundora_dev`: add → no change → update → retire
+- [x] CI already runs `validate-schemes` and the seed job on push to `main`; it now passes with the empty folder
+- [ ] Client Scheme type: there's no client scheme code yet; the scheme pages will use `@shared` types from the start
+
 > **Prompt:**
 > Read docs/scheme-data.md and data/schemes/CLAUDE.md. Create SchemeFileSchema and RuleSchema in src/shared/schemas, the Scheme model, and the scripts validate-schemes, seed (with --dry-run) and import-sheet. Make data/schemes/_example.json pass validation. Add validate-schemes to CI and a seed job on push to main (see docs/deployment.md). Replace the client's Scheme type in src/client/features/schemes/types.ts with types inferred from the shared schema, keeping the fields the UI already uses.
 
 Then, for each scheme: *"Use the add-scheme skill to add <scheme name> from <official URL>."*
 
 ## Phase 4 — Eligibility engine (weeks 4–6)
+
+### Phase 4 — implementation checklist (2026-11-12)
+
+Shared
+- [x] `eligibility/`: `evaluate` (pure, derived `age` and `isFinalYear`), `operators`, `reasons` + `labels` (Indian money grouping), `fixtures/profiles.ts` (made-up students)
+- [x] Tests: every operator at pass / fail / on the limit / one over / in margin / past margin / missing; state rules; score; `_example.json` snapshots
+- [x] `schemas/match.ts` (`MatchResultSchema`), `SchemeSchema` + `SchemesQuery`, `dates.ts` (`todayInIndia`, `isSchemeOpen`)
+
+Scripts
+- [x] `check-scheme`: validates a file and prints state, score and reason per sample student
+
+Server
+- [x] `models/MatchResult.ts` (encrypted results, keyed on profileVersion + dataVersion + day, TTL 30 days)
+- [x] `services/matching.ts`, `readSession` middleware, `GET /schemes` (filters, sort) and `GET /schemes/:id` (eligibility) with Supertest tests
+
+Client
+- [x] Dashboard "Eligible for" and "Closing in 14 days" tiles use `GET /schemes` (`features/schemes`)
+- [ ] Matches, browse and scheme pages: Phase 5 (there's no mock scheme data to switch off; pages call the API from the start)
+- [ ] Real schemes in `data/schemes` (team, with the `add-scheme` skill), then `check-scheme` on 2–3 of them
 
 > **Prompt:**
 > Use the eligibility-engine skill. Implement src/shared/eligibility (evaluate, operators, reasons) exactly as docs/eligibility-engine.md describes, with fixtures and the full test list. Add scripts/check-scheme.ts. Then build services/matching.ts with the matchResults cache and make GET /api/v1/schemes and GET /api/v1/schemes/:id return match and eligibility data as docs/api.md describes. Turn VITE_USE_MOCK_DATA off for schemes and check that the dashboard, matches, browse and scheme pages work with real data.

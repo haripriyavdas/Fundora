@@ -24,3 +24,13 @@ export function userId(req: Express.Request): string {
   if (!req.user) throw new HttpError(401, 'UNAUTHENTICATED')
   return req.user.id
 }
+
+/**
+ * For public routes that show more to a signed-in student (GET /schemes). Sets `req.user` when
+ * the cookie is valid; a missing or bad cookie just means logged out.
+ */
+export const readSession: RequestHandler = (req, _res, next) => {
+  const userId = verifySession(req.cookies?.[SESSION_COOKIE])
+  if (userId) req.user = { id: userId }
+  next()
+}
