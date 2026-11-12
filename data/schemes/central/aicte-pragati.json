@@ -1,0 +1,134 @@
+{
+  "id": "aicte-pragati",
+  "name": "AICTE Pragati Scholarship for Girls",
+  "provider": "AICTE, Ministry of Education",
+  "providerType": "central",
+  "aidType": "scholarship",
+  "level": "UG",
+  "courses": [
+    "engineering",
+    "computer-it",
+    "pharmacy",
+    "architecture",
+    "management",
+    "hotel-management",
+    "design-fine-arts"
+  ],
+  "states": ["ALL"],
+  "groups": ["girls"],
+
+  "amount": "Up to ₹50,000 / year",
+  "amountMax": 50000,
+  "mode": "online",
+  "portal": { "name": "AICTE (official site)", "url": "https://aicte.gov.in" },
+  "sourceUrl": "https://aicte.gov.in/sites/default/files/Pragati%20Scheme%20Guidelines.pdf",
+  "verifiedOn": "2026-11-12",
+
+  "about": "An AICTE scheme to support girls studying technical education. 2,000 scholarships a year go to degree students (and 2,000 to diploma students), chosen on merit.",
+  "benefits": [
+    "₹30,000 a year towards tuition fees, or towards books, equipment, software, a laptop or desktop, a vehicle or competitive exam fees",
+    "₹2,000 a month for 10 months a year as incidental charges"
+  ],
+  "eligibilityText": [
+    "Girl students admitted to the first year of a degree course in an AICTE-approved institution through the state or central centralised admission process",
+    "Family income up to ₹8 lakh a year in the previous financial year (for married girls, the higher of parents' or in-laws' income)",
+    "Up to two girl children per family",
+    "Selection on merit from the qualifying examination; 15% of awards reserved for SC, 7.5% for ST and 27% for OBC"
+  ],
+
+  "rules": [
+    { "field": "gender", "op": "in", "value": ["female"], "hard": true, "label": "Girl students" },
+    {
+      "field": "yearOfStudy",
+      "op": "eq",
+      "value": 1,
+      "hard": true,
+      "label": "First year of the degree course"
+    },
+    {
+      "field": "courseCategory",
+      "op": "in",
+      "value": [
+        "engineering",
+        "computer-it",
+        "pharmacy",
+        "architecture",
+        "management",
+        "hotel-management",
+        "design-fine-arts"
+      ],
+      "hard": true,
+      "label": "Technical course in an AICTE-approved institution"
+    },
+    {
+      "field": "familyIncome",
+      "op": "lte",
+      "value": 800000,
+      "nearMargin": 50000,
+      "label": "Family income up to ₹8 lakh a year"
+    }
+  ],
+
+  "documents": [
+    { "id": "marks-cards", "name": "Class 10 and 12 marks cards" },
+    {
+      "id": "income-certificate",
+      "name": "Family income certificate",
+      "note": "Previous financial year, issued by an officer not below Tahsildar"
+    },
+    {
+      "id": "admission-letter",
+      "name": "Admission letter",
+      "note": "Issued by the Directorate of Technical Education"
+    },
+    {
+      "id": "institute-certificate",
+      "name": "Certificate from your college",
+      "note": "Signed by the Director, Principal or Head of the institute"
+    },
+    { "id": "fee-receipt", "name": "Tuition fee receipt" },
+    {
+      "id": "bank-passbook",
+      "name": "Aadhaar-linked bank passbook",
+      "note": "In your name, showing IFSC and your photo"
+    },
+    {
+      "id": "caste-certificate",
+      "name": "Caste certificate",
+      "note": "Only for SC, ST and OBC students"
+    },
+    { "id": "aadhaar", "name": "Aadhaar card" },
+    {
+      "id": "parent-declaration",
+      "name": "Declaration signed by your parents",
+      "note": "That your details are correct"
+    }
+  ],
+  "steps": [
+    {
+      "title": "Check this year's notice",
+      "text": "Read AICTE's current Pragati notice for the dates and the apply link."
+    },
+    {
+      "title": "Apply on the official portal",
+      "text": "Apply on the official portal yourself and upload the documents listed here."
+    }
+  ],
+  "officialDocuments": [
+    {
+      "title": "Pragati Scholarship Scheme guidelines",
+      "kind": "guidelines",
+      "format": "pdf",
+      "url": "https://aicte.gov.in/sites/default/files/Pragati%20Scheme%20Guidelines.pdf"
+    }
+  ],
+  "notes": [
+    "UNVERIFIED: the source PDF is the guidelines for renewals submitted for 2020 (page 1) and fresh/renewal cases up to 2019 (page 2). Amounts and the ₹8 lakh limit need checking against the current AICTE notice.",
+    "UNVERIFIED: no last date in the source; closesOn left out.",
+    "UNVERIFIED: the PDF doesn't name the apply portal; portal set to aicte.gov.in. Replace with the real apply link (likely NSP) once confirmed.",
+    "UNVERIFIED: mode set to online; the PDF doesn't say whether hard copies are needed.",
+    "UNVERIFIED: the course list is not in the source, which only says 'technical degree course in an AICTE-approved institution'. The courseCategory list is the AICTE-approved categories Fundora has; review it.",
+    "amountMax 50,000 = ₹30,000 + ₹2,000 × 10 months, as stated in the 2020 page.",
+    "'Two girl children per family' and 'admitted through centralised admission' can't be expressed as rules; shown in eligibilityText. Diploma students are not covered because Fundora is UG-only."
+  ]
+}
