@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { AppLayout } from '@/components/app/AppLayout'
+import { OpenLayout } from '@/components/app/OpenLayout'
 import { SiteLayout } from '@/components/layout/SiteLayout'
 import HomePage from '@/pages/home/HomePage'
 import PlaceholderPage from '@/pages/PlaceholderPage'
@@ -14,6 +15,9 @@ const VerifyEmailPage = lazy(() => import('@/pages/auth/VerifyEmailPage'))
 const DashboardPage = lazy(() => import('@/pages/app/DashboardPage'))
 const ProfilePage = lazy(() => import('@/pages/app/ProfilePage'))
 const ComingSoonPage = lazy(() => import('@/pages/app/ComingSoonPage'))
+const MatchesPage = lazy(() => import('@/pages/app/MatchesPage'))
+const BrowsePage = lazy(() => import('@/pages/app/BrowsePage'))
+const SchemePage = lazy(() => import('@/pages/app/SchemePage'))
 
 export default function App() {
   const { t } = useTranslation()
@@ -61,10 +65,15 @@ export default function App() {
         <Route element={<AppLayout />}>
           <Route path="dashboard" element={<DashboardPage />} />
           <Route path="profile" element={<ProfilePage />} />
-          {/* Until schemes, matching and the tracker exist */}
-          <Route path="matches" element={<ComingSoonPage area="matches" />} />
+          <Route path="matches" element={<MatchesPage />} />
+          {/* Until the tracker exists (Phase 6) */}
           <Route path="applications" element={<ComingSoonPage area="applications" />} />
-          <Route path="browse" element={<ComingSoonPage area="browse" />} />
+        </Route>
+
+        {/* Anyone can browse; signed-in students also see their match */}
+        <Route element={<OpenLayout />}>
+          <Route path="browse" element={<BrowsePage />} />
+          <Route path="schemes/:schemeId" element={<SchemePage />} />
         </Route>
       </Routes>
     </Suspense>

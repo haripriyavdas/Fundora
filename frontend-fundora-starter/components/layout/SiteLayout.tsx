@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { Footer } from './Footer'
 import { Navbar } from './Navbar'
 
-/** Public pages: navbar, page, footer with the scam warning. */
-export function SiteLayout() {
+/** Public pages: navbar, page, footer with the scam warning. `padded` puts the page in the app's content width. */
+export function SiteLayout({ padded = false }: { padded?: boolean }) {
   const { t } = useTranslation()
   return (
     <div className="flex min-h-dvh flex-col">
@@ -16,7 +16,13 @@ export function SiteLayout() {
       </a>
       <Navbar />
       <main id="main" className="flex-1">
-        <Outlet />
+        {padded ? (
+          <div className="mx-auto max-w-[1100px] px-4 py-8 sm:px-8 sm:py-12">
+            <Outlet />
+          </div>
+        ) : (
+          <Outlet />
+        )}
       </main>
       <Footer />
     </div>

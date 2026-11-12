@@ -1,4 +1,4 @@
-import { Bookmark, ListChecks, Search, type LucideIcon } from 'lucide-react'
+import { Bookmark, type LucideIcon } from 'lucide-react'
 import { Link } from 'react-router'
 import { useTranslation } from 'react-i18next'
 import { EmptyTile } from '@/components/app/EmptyTile'
@@ -6,14 +6,12 @@ import { button } from '@/components/ui/button'
 import { PageHeader } from '@/components/ui/Eyebrow'
 
 const icons: Record<Area, LucideIcon> = {
-  matches: ListChecks,
   applications: Bookmark,
-  browse: Search,
 }
 
-type Area = 'matches' | 'applications' | 'browse'
+type Area = 'applications'
 
-/** Logged-in pages whose data (schemes, matches, tracker) doesn't exist yet. */
+/** Logged-in pages whose data doesn't exist yet (the tracker, until Phase 6). */
 export default function ComingSoonPage({ area }: { area: Area }) {
   const { t } = useTranslation()
   return (
