@@ -12,9 +12,9 @@ The React app in `frontend-fundora-starter`, built by Vite into `dist/client` an
 | `/verify-email` | Confirms the emailed token | public | built (live API) |
 | `/profile` | 5-step wizard: education → marks & attendance → family & income → category & background → documents held | student | built (live API) |
 | `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | "Eligible for" and "Closing in 14 days" tiles from `GET /schemes` (saved and offline wait for the tracker), profile card, "Save a scheme" tile |
-| `/matches` | Tabs Eligible / Almost / Not eligible, filters (type, amount, deadline, provider, group), sort | student | to build (coming-soon page in the sidebar for now) |
-| `/browse` | All schemes, search, filters; no account needed | public | to build (coming-soon page inside the logged-in shell for now) |
-| `/schemes/:schemeId` | Full scheme page with match reasons and Apply button | public | to build |
+| `/matches` | Tabs Eligible / Almost / Not eligible, filters (type, amount, deadline, provider, group), sort | student | built: tabs Eligible / Almost / Not eligible / Need info with counts, filters (type, provider, group, open only) and sort in the URL, profile nudge |
+| `/browse` | All schemes, search, filters; no account needed | public | built: search on submit, filters incl. state, sort in the URL; student shell when signed in, site shell otherwise (`OpenLayout`) |
+| `/schemes/:schemeId` | Full scheme page with match reasons and Apply button | public | built: red hero + fact strip, rule-by-rule eligibility (signed in), documents, steps, offline, dates, help, stale notice after 90 days, sticky Apply with the no-fee/no-password note |
 | `/applications` | Tracker: Saved · Applied · Renewal due | student | to build (coming-soon page for now) |
 | `/account` | Reminder settings, export data, delete account | student | to build |
 | `/guides`, `/guides/:slug` | Markdown guides from `content/guides` | public | to build |
@@ -51,7 +51,7 @@ Tokens live in `frontend-fundora-starter/index.css` under `@theme`:
 | `line`, `line-soft`, `line-strong` | card borders, dividers inside cards, secondary-button and dashed borders |
 | `eligible(-bg)`, `almost(-bg)`, `not(-bg)`, `info(-bg)`, `warn(-bg)` | match states, notices, warning banners |
 
-Look: cream canvas, charcoal sidebar (300 px, collapses to a top bar + bottom nav below `lg`), flat red hero cards, no gradients, emoji or illustrations, thin stroke icons. Font: Inter Variable; display headings `font-extrabold` with `tracking-[-0.02em]`; eyebrows are 12 px caps with `tracking-[0.14em]` (`components/ui/Eyebrow.tsx`, with `PageHeader`). Corners: `rounded-2xl` cards, `rounded-full` buttons and chips, `rounded-[20px]` hero panels. Buttons: `button.primary` (red), `secondary` (white + border), `ink` (charcoal), `ghost`, `onBrand` (white pill on red). Building blocks: `StatTile`, `EmptyTile` in `components/app`. Animations: `animate-fade-up`, `animate-pop`, `animate-shake` (form errors). Match states always show icon + word + colour.
+Look: cream canvas, charcoal sidebar (300 px, collapses to a top bar + bottom nav below `lg`), flat red hero cards, no gradients, emoji or illustrations, thin stroke icons. Font: Inter Variable; display headings `font-extrabold` with `tracking-[-0.02em]`; eyebrows are 12 px caps with `tracking-[0.14em]` (`components/ui/Eyebrow.tsx`, with `PageHeader`). Corners: `rounded-2xl` cards, `rounded-full` buttons and chips, `rounded-[20px]` hero panels. Buttons: `button.primary` (red), `secondary` (white + border), `ink` (charcoal), `ghost`, `onBrand` (white pill on red). Building blocks in `components/app`: `StatTile`, `EmptyTile`, `SchemeCard` (+ skeleton), `SchemeList` (loading / error / empty), `MatchChip` and `ModeChip`, `FilterBar`. Animations: `animate-fade-up`, `animate-pop`, `animate-shake` (form errors). Match states always show icon + word + colour.
 
 ## i18n
 

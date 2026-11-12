@@ -42,4 +42,4 @@ frontend-fundora-starter/
 
 ## Routes (current)
 
-`/`, `/login`, `/signup`, `/forgot`, `/reset-password`, `/verify-email`, `/dashboard` (placeholder), `/profile` (wizard), `/privacy`, `/terms`. To add: `/matches`, `/browse`, `/schemes/:schemeId`, `/applications`, `/account` (export + delete), `/guides`, `/guides/:slug`.
+`/`, `/login`, `/signup`, `/forgot`, `/reset-password`, `/verify-email`, `/dashboard`, `/profile` (wizard), `/matches`, `/browse` and `/schemes/:schemeId` (public, via `OpenLayout`), `/privacy`, `/terms`. To add: `/applications`, `/account` (export + delete), `/guides`, `/guides/:slug`.

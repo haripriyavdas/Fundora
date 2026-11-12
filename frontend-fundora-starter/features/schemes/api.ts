@@ -1,7 +1,6 @@
-import type { Scheme, SchemesQuery } from '@shared/schemas'
+import type { Scheme } from '@shared/schemas'
 import { apiGet } from '@/lib/api'
-
-type Filters = { [K in keyof SchemesQuery]?: string }
+import type { Filters } from './filters'
 
 /** Every active scheme, each with the signed-in student's match (unknown when logged out). */
 export function getSchemes(filters: Filters = {}) {

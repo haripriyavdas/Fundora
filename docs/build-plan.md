@@ -126,13 +126,22 @@ Server
 
 Client
 - [x] Dashboard "Eligible for" and "Closing in 14 days" tiles use `GET /schemes` (`features/schemes`)
-- [ ] Matches, browse and scheme pages: Phase 5 (there's no mock scheme data to switch off; pages call the API from the start)
+- [x] Matches, browse and scheme pages: built in Phase 5 (there was no mock scheme data to switch off; pages call the API from the start)
 - [ ] Real schemes in `data/schemes` (team, with the `add-scheme` skill), then `check-scheme` on 2–3 of them
 
 > **Prompt:**
 > Use the eligibility-engine skill. Implement src/shared/eligibility (evaluate, operators, reasons) exactly as docs/eligibility-engine.md describes, with fixtures and the full test list. Add scripts/check-scheme.ts. Then build services/matching.ts with the matchResults cache and make GET /api/v1/schemes and GET /api/v1/schemes/:id return match and eligibility data as docs/api.md describes. Turn VITE_USE_MOCK_DATA off for schemes and check that the dashboard, matches, browse and scheme pages work with real data.
 
 ## Phase 5 — Discovery UI polish (weeks 6–7)
+
+### Phase 5 — implementation checklist (2026-11-12)
+
+- [x] `/matches`: tabs per match state with counts, filters and sort synced to the URL (`?tab=almost&aidType=loan`), profile nudge under 100%
+- [x] `/browse`: public; search on submit, filters incl. state, sort; match chips only when signed in
+- [x] `/schemes/:schemeId`: eligibility reasons, official wording, "check on the official site" note, stale notice when `verifiedOn` is over 90 days old, Apply opens `portal.url` in a new tab with `rel="noopener noreferrer"`
+- [x] Loading skeletons, empty states with a next step, error with retry; filters collapse behind a button on phones
+- [x] Tests: `features/schemes/format.test.ts`, `pages/app/SchemePages.test.tsx`
+- [ ] Look at each page at 360 px and desktop with real schemes once the team has added some
 
 > **Prompt:**
 > Use the frontend-page skill. Make /matches and /browse use real filters and sort (aidType, providerType, group, amount, closing date, open only) synced to the URL query. On the scheme page, show the eligibility reasons, the "verify on the official site" note, the stale-data notice when verifiedOn is over 90 days old, and the Apply button opening portal.url in a new tab. Add loading, empty and error states. Check at 360 px wide.

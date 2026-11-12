@@ -183,15 +183,162 @@
     "saveTitle": "Save a scheme",
     "saveText": "Find a scheme and save it to keep its details and deadline here."
   },
+  "schemes": {
+    "aidType": {
+      "scholarship": "Scholarship",
+      "loan": "Education loan",
+      "feeWaiver": "Fee waiver",
+      "device": "Laptop or device",
+      "hostel": "Hostel",
+      "books": "Books",
+      "coaching": "Coaching",
+      "travel": "Travel"
+    },
+    "providerType": {
+      "central": "Central government",
+      "state": "State government",
+      "private": "Private or foundation",
+      "bank": "Bank"
+    },
+    "group": {
+      "girls": "Girls and women",
+      "disability": "Students with a disability",
+      "rural": "Rural students"
+    },
+    "match": {
+      "eligible": "Eligible",
+      "almost": "Almost eligible",
+      "not": "Not eligible",
+      "unknown": "Need info"
+    },
+    "mode": {
+      "online": "Online only",
+      "onlineAndOffline": "Online + offline"
+    },
+    "deadline": {
+      "closes_one": "Closes {{date}} · {{count}} day left",
+      "closes_other": "Closes {{date}} · {{count}} days left",
+      "today": "Closes today",
+      "closed": "Closed on {{date}}",
+      "opens": "Opens {{date}}",
+      "allYear": "Open all year",
+      "unknown": "Last date not announced yet"
+    },
+    "details": "Details",
+    "detailsFor": "Details for {{name}}",
+    "count_one": "{{count}} scheme",
+    "count_other": "{{count}} schemes",
+    "loadError": "We couldn't load schemes.",
+    "filters": {
+      "label": "Search and filters",
+      "toggle": "Filters and sort",
+      "toggleCount": "Filters and sort ({{count}} on)",
+      "search": "Search schemes",
+      "searchPlaceholder": "Name, provider or keyword",
+      "searchButton": "Search",
+      "aidType": "Type of help",
+      "providerType": "Given by",
+      "group": "Meant for",
+      "state": "State",
+      "sort": "Sort by",
+      "openOnly": "Open now only",
+      "any": "Any",
+      "allStates": "All states",
+      "clear": "Clear filters"
+    },
+    "sort": {
+      "match": "Best match",
+      "closing": "Closing soonest",
+      "amount": "Highest amount",
+      "name": "Name (A–Z)"
+    }
+  },
+  "matches": {
+    "eyebrow": "My matches",
+    "title": "My matches",
+    "intro": "Every scheme checked against your profile, with the reason for each. You apply on the official portal yourself.",
+    "profileNudge": "Your profile is {{percent}}% complete. Fill in the rest so we can check more schemes for you.",
+    "profileCta": "Complete my profile",
+    "tabsLabel": "Match result",
+    "noSchemesTitle": "No schemes yet",
+    "noSchemesText": "We're adding schemes checked against official sources. Check back soon.",
+    "emptyFilteredTitle": "Nothing matches these filters",
+    "emptyFilteredText": "Try removing a filter to see more schemes.",
+    "empty": {
+      "eligible": {
+        "title": "None fully matched yet",
+        "text": "Fill in more of your profile, and look at Almost eligible: you may be close."
+      },
+      "almost": {
+        "title": "Nothing almost there",
+        "text": "No scheme is just out of reach right now."
+      },
+      "not": {
+        "title": "Nothing ruled out",
+        "text": "There are no schemes you don't qualify for."
+      },
+      "unknown": {
+        "title": "Nothing missing",
+        "text": "Your profile has everything these schemes need."
+      }
+    }
+  },
+  "browse": {
+    "eyebrow": "Browse",
+    "title": "Find any scheme",
+    "intro": "Search every scholarship, loan, fee waiver and grant we list.",
+    "guestNote": "Create a free profile to see which schemes you qualify for, and why.",
+    "emptyFilteredTitle": "No schemes found",
+    "emptyFilteredText": "Try another word, or remove a filter."
+  },
+  "scheme": {
+    "backMatches": "Back to my matches",
+    "browseAll": "Browse all schemes",
+    "notFoundTitle": "Scheme not found",
+    "notFoundText": "It may have been removed or the link may be wrong.",
+    "loadError": "We couldn't load this scheme.",
+    "award": "Award",
+    "deadline": "Deadline",
+    "howToSubmit": "How to submit",
+    "submit": {
+      "online": "Online only",
+      "onlineAndOffline": "Online, then papers in person"
+    },
+    "stale": "These details were last checked over 90 days ago and may be out of date. Check the official site before you apply.",
+    "sections": {
+      "eligibility": "Eligibility",
+      "about": "About",
+      "documents": "Documents required",
+      "steps": "How to apply",
+      "offline": "Offline submission",
+      "renewal": "Renewal",
+      "officialDocuments": "Official documents",
+      "importantDates": "Important dates",
+      "helpline": "Help"
+    },
+    "result": {
+      "met": "You meet this",
+      "near": "Nearly",
+      "notMet": "Not met",
+      "unknown": "Need info"
+    },
+    "loginToCheck": "Log in to see which of these conditions you meet.",
+    "officialWording": "Who can apply (official wording)",
+    "offlineWhere": "Where",
+    "offlineWhen": "When",
+    "offlineCarry": "Carry",
+    "phone": "Phone",
+    "email": "Email",
+    "hours": "Hours",
+    "verified": "Details last checked against the official source on {{date}}.",
+    "source": "Official source",
+    "apply": "Apply on the official portal",
+    "applyNote": "Opens {{domain}} in a new tab. Fundora never asks for your portal password and never charges a fee.",
+    "verifyNote": "Always check the details on the official site before you apply.",
+    "onThisPage": "On this page"
+  },
   "comingSoon": {
     "badge": "Coming soon",
-    "matches": {
-      "eyebrow": "My matches",
-      "title": "My matches",
-      "intro": "Every scheme checked against your profile, sorted into Eligible, Almost eligible and Not eligible, with the reason for each.",
-      "emptyTitle": "Your matches are on the way",
-      "emptyText": "Matching isn't switched on yet. Fill your profile now so your matches are ready the day it is."
-    },
     "applications": {
       "eyebrow": "My applications",
       "title": "My applications",
@@ -199,13 +346,6 @@
       "emptyTitle": "Save a scheme",
       "emptyText": "Find a scheme and save it to keep its details and deadline here.",
       "stages": "Your schemes will sit in three lists: Saved, Applied and Renewal due."
-    },
-    "browse": {
-      "eyebrow": "Browse",
-      "title": "Find any scheme",
-      "intro": "Search every scholarship, loan, fee waiver and grant, with or without a profile.",
-      "emptyTitle": "The scheme list is on the way",
-      "emptyText": "We're checking each scheme against its official source before listing it."
     },
     "profileCta": "Fill my profile"
   },
@@ -244,57 +384,108 @@
       }
     },
     "fields": {
-      "courseCategory": { "label": "Course type" },
+      "courseCategory": {
+        "label": "Course type"
+      },
       "courseName": {
         "label": "Course name",
         "hint": "For example, B.E. Mechanical or B.Com."
       },
-      "yearOfStudy": { "label": "Year of study", "hint": "A number from 1 to 5." },
-      "institutionState": { "label": "State your college is in" },
-      "institutionType": { "label": "Type of college" },
-      "class10Percent": { "label": "Class 10 percentage" },
-      "class12Percent": { "label": "Class 12 or PUC percentage" },
+      "yearOfStudy": {
+        "label": "Year of study",
+        "hint": "A number from 1 to 5."
+      },
+      "institutionState": {
+        "label": "State your college is in"
+      },
+      "institutionType": {
+        "label": "Type of college"
+      },
+      "class10Percent": {
+        "label": "Class 10 percentage"
+      },
+      "class12Percent": {
+        "label": "Class 12 or PUC percentage"
+      },
       "cgpa": {
         "label": "Current CGPA (out of 10)",
         "hint": "In your first year? Leave this blank."
       },
-      "attendancePercent": { "label": "Attendance percentage" },
+      "attendancePercent": {
+        "label": "Attendance percentage"
+      },
       "familyIncome": {
         "label": "Family income per year (₹)",
         "hint": "The total for your whole family, as on your income certificate."
       },
-      "parentOccupation": { "label": "Parent's or guardian's main occupation" },
+      "parentOccupation": {
+        "label": "Parent's or guardian's main occupation"
+      },
       "firstGenLearner": {
         "label": "Are you the first in your family to go to college?"
       },
-      "orphan": { "label": "Have you lost both parents?" },
-      "singleParent": { "label": "Are you raised by a single parent?" },
+      "orphan": {
+        "label": "Have you lost both parents?"
+      },
+      "singleParent": {
+        "label": "Are you raised by a single parent?"
+      },
       "defenceWard": {
         "label": "Is a parent serving in, or retired from, the armed forces?"
       },
-      "hasOtherScholarship": { "label": "Do you get another scholarship right now?" },
-      "otherScholarshipName": { "label": "Name of that scholarship" },
-      "category": { "label": "Category" },
+      "hasOtherScholarship": {
+        "label": "Do you get another scholarship right now?"
+      },
+      "otherScholarshipName": {
+        "label": "Name of that scholarship"
+      },
+      "category": {
+        "label": "Category"
+      },
       "minority": {
         "label": "Do you belong to a religious minority community?"
       },
-      "gender": { "label": "Gender" },
+      "gender": {
+        "label": "Gender"
+      },
       "disability": {
         "label": "Do you have a disability?",
         "percentLabel": "Disability percentage, as on your certificate"
       },
-      "domicileState": { "label": "State of domicile" },
-      "rural": { "label": "Is your home in a rural area?" },
-      "nationality": { "label": "Nationality" },
-      "dateOfBirth": { "label": "Date of birth" },
+      "domicileState": {
+        "label": "State of domicile"
+      },
+      "rural": {
+        "label": "Is your home in a rural area?"
+      },
+      "nationality": {
+        "label": "Nationality"
+      },
+      "dateOfBirth": {
+        "label": "Date of birth"
+      },
       "docs": {
-        "incomeCertificate": { "label": "Income certificate" },
-        "casteCertificate": { "label": "Caste certificate" },
-        "disabilityCertificate": { "label": "Disability certificate" },
-        "domicileCertificate": { "label": "Domicile certificate" },
-        "bankAadhaarSeeded": { "label": "Bank account linked to Aadhaar" },
-        "class12Marksheet": { "label": "Class 12 or PUC marksheet" },
-        "feeReceipt": { "label": "This year's fee receipt" }
+        "incomeCertificate": {
+          "label": "Income certificate"
+        },
+        "casteCertificate": {
+          "label": "Caste certificate"
+        },
+        "disabilityCertificate": {
+          "label": "Disability certificate"
+        },
+        "domicileCertificate": {
+          "label": "Domicile certificate"
+        },
+        "bankAadhaarSeeded": {
+          "label": "Bank account linked to Aadhaar"
+        },
+        "class12Marksheet": {
+          "label": "Class 12 or PUC marksheet"
+        },
+        "feeReceipt": {
+          "label": "This year's fee receipt"
+        }
       }
     },
     "options": {
