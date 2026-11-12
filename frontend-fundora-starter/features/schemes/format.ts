@@ -1,18 +1,10 @@
-import { daysBetween } from '@shared/dates'
+import { daysBetween, formatDate } from '@shared/dates'
 import type { Scheme } from '@shared/schemas'
 
 /** Days ahead that count as "closing soon" on cards and in the dashboard tile. */
 export const CLOSING_SOON_DAYS = 14
 
-/** "17 Nov 2026". Dates are YYYY-MM-DD, read as calendar dates (no time zone shift). */
-export function formatDate(date: string): string {
-  return new Intl.DateTimeFormat('en-IN', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    timeZone: 'UTC',
-  }).format(new Date(`${date}T00:00:00Z`))
-}
+export { formatDate }
 
 /** Which deadline line a scheme shows, as an i18n key under `schemes.deadline` plus its values. */
 export function deadline(

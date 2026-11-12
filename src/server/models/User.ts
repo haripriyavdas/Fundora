@@ -9,6 +9,9 @@ const userSchema = new Schema(
     googleId: { type: String },
     verified: { type: Boolean, required: true, default: false },
     consentAt: { type: Date, required: true },
+    // Reminder email settings (GET/PATCH /notifications/settings)
+    deadlineEmails: { type: Boolean, required: true, default: true },
+    renewalEmails: { type: Boolean, required: true, default: true },
     // One-time tokens are stored only as SHA-256 hashes (services/tokens.ts)
     verifyTokenHash: { type: String, select: false },
     verifyTokenExpiresAt: { type: Date, select: false },

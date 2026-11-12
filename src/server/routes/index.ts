@@ -6,7 +6,9 @@ import { requireJson } from '../middleware/requireJson.js'
 import { authRouter } from './auth.js'
 import { healthRouter } from './health.js'
 import { meRouter } from './me.js'
+import { notificationsRouter } from './notifications.js'
 import { profileRouter } from './profile.js'
+import { savedRouter } from './saved.js'
 import { schemesRouter } from './schemes.js'
 
 /** Everything under /api/v1. There are no admin or role-based routes, by design. */
@@ -22,6 +24,8 @@ export function createApiRouter(rateLimits?: RateLimits) {
   api.use('/me', meRouter)
   api.use('/profile', profileRouter)
   api.use('/schemes', schemesRouter)
+  api.use('/saved', savedRouter)
+  api.use('/notifications', notificationsRouter)
 
   // Unknown API paths get a JSON 404 instead of the React app
   api.use((_req, _res) => {

@@ -11,11 +11,11 @@ The React app in `frontend-fundora-starter`, built by Vite into `dist/client` an
 | `/forgot`, `/reset-password` | Password reset | public | built (live API) |
 | `/verify-email` | Confirms the emailed token | public | built (live API) |
 | `/profile` | 5-step wizard: education → marks & attendance → family & income → category & background → documents held | student | built (live API) |
-| `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | "Eligible for" and "Closing in 14 days" tiles from `GET /schemes` (saved and offline wait for the tracker), profile card, "Save a scheme" tile |
+| `/dashboard` | Profile completeness, counts per match state, upcoming deadlines | student | "Eligible for" and "Closing in 14 days" from `GET /schemes`; "Saved to apply" and "Offline visits needed" from `GET /saved`; profile card; up to 3 saved schemes plus a "Save a scheme" tile |
 | `/matches` | Tabs Eligible / Almost / Not eligible, filters (type, amount, deadline, provider, group), sort | student | built: tabs Eligible / Almost / Not eligible / Need info with counts, filters (type, provider, group, open only) and sort in the URL, profile nudge |
 | `/browse` | All schemes, search, filters; no account needed | public | built: search on submit, filters incl. state, sort in the URL; student shell when signed in, site shell otherwise (`OpenLayout`) |
 | `/schemes/:schemeId` | Full scheme page with match reasons and Apply button | public | built: red hero + fact strip, rule-by-rule eligibility (signed in), documents, steps, offline, dates, help, stale notice after 90 days, sticky Apply with the no-fee/no-password note |
-| `/applications` | Tracker: Saved · Applied · Renewal due | student | to build (coming-soon page for now) |
+| `/applications` | Tracker: Saved · Applied · Renewal due | student | three columns (stacked on phones); each card has a stage menu, official portal link and remove; "Email reminders" settings card. Data from `features/applications/store.ts` |
 | `/account` | Reminder settings, export data, delete account | student | to build |
 | `/guides`, `/guides/:slug` | Markdown guides from `content/guides` | public | to build |
 | `/privacy`, `/terms` | Static | public | placeholder |
