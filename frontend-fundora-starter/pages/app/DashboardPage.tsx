@@ -1,20 +1,34 @@
 import { Bookmark, UserRound } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
+import { todayInIndia } from '@shared/dates'
 import { EmptyTile } from '@/components/app/EmptyTile'
 import { StatTile } from '@/components/app/StatTile'
 import { button } from '@/components/ui/button'
 import { Eyebrow, PageHeader } from '@/components/ui/Eyebrow'
 import { useSession } from '@/features/auth/session'
+import { matchStats } from '@/features/schemes/stats'
+import { useSchemes } from '@/features/schemes/useSchemes'
 import { cn } from '@/lib/cn'
 
 const stats = ['eligible', 'closing', 'saved', 'offline'] as const
 
-// Stat values stay empty until matches (Phase 4) and the tracker exist
+// Saved and offline stay empty until the tracker exists (Phase 6)
 export default function DashboardPage() {
   const { t } = useTranslation()
   const session = useSession()
+  const { state: schemes, retry } = useSchemes()
   if (session.status !== 'student') return null
+
+  const counts =
+    schemes.status === 'ready' ? matchStats(schemes.schemes, todayInIndia()) : undefined
+  const statValue = (key: (typeof stats)[number]) => {
+    if (key === 'eligible' || key === 'closing') {
+      if (schemes.status === 'loading') return t('dashboard.loadingValue')
+      if (counts) return String(counts[key])
+    }
+    return t('dashboard.noValue')
+  }
 
   const { profileComplete } = session
   const ctaKey =
@@ -42,12 +56,21 @@ export default function DashboardPage() {
               key={key}
               emphasis={i === 0}
               label={t(`dashboard.stats.${key}.label`)}
-              value={t('dashboard.noValue')}
+              value={statValue(key)}
               description={t(`dashboard.stats.${key}.text`)}
             />
           ))}
         </div>
-        <p className="mt-3 text-sm text-muted">{t('dashboard.statsPending')}</p>
+        {schemes.status === 'error' ? (
+          <p role="alert" className="mt-3 text-sm text-body">
+            {t('dashboard.statsError')}{' '}
+            <button type="button" onClick={retry} className="font-semibold text-brand underline">
+              {t('dashboard.retry')}
+            </button>
+          </p>
+        ) : (
+          <p className="mt-3 text-sm text-muted">{t('dashboard.statsPending')}</p>
+        )}
       </section>
 
       <section aria-labelledby="profile-heading">

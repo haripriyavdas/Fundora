@@ -66,7 +66,7 @@ Model: `src/server/models/Scheme.ts`. Indexes: `{ id: 1 }` unique, `{ status: 1,
 Index: `{ userId: 1, schemeId: 1 }` unique. API path is `/saved`.
 
 ### matchResults (cache)
-`userId`, `profileVersion`, `dataVersion`, `results: [{ schemeId, state, score, reasons[] }]`, `computedAt`. Index `{ userId: 1 }` unique; rebuilt when either version changes. TTL index on `computedAt` (30 days).
+`userId`, `profileVersion`, `dataVersion`, `computedFor` (India date), `results` (encrypted JSON: `[{ schemeId, state, score, reason, reasons[] }]`), `computedAt`. Index `{ userId: 1 }` unique; rebuilt when either version or the day changes. TTL index on `computedAt` (30 days). Encrypted because a state or reason can reveal income, category or disability.
 
 ### notifications
 `userId`, `schemeId`, `kind` (`deadline` \| `renewal`), `sendAt`, `sentAt?`. Index `{ sentAt: 1, sendAt: 1 }`, `{ userId: 1 }`.

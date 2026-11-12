@@ -149,6 +149,9 @@
     "subtitle": "You're logged in as {{email}}.",
     "statsLabel": "Your numbers",
     "noValue": "–",
+    "loadingValue": "…",
+    "statsError": "We couldn't load your matches.",
+    "retry": "Try again",
     "stats": {
       "eligible": {
         "label": "Eligible for",
@@ -167,11 +170,11 @@
         "text": "Saved schemes that need papers handed in at an office."
       }
     },
-    "statsPending": "These numbers appear once matching is switched on. Filling your profile now means they'll be ready.",
+    "statsPending": "Saved and offline numbers appear once you can save schemes. The more of your profile you fill, the more schemes we can check.",
     "profileEyebrow": "01 · Your profile",
     "profileTitle": "Your profile",
     "profileComplete": "{{percent}}% complete",
-    "matchesSoon": "The more you fill in, the more schemes we can check for you. Your matches will appear here soon.",
+    "matchesSoon": "The more you fill in, the more schemes we can check for you.",
     "profileStart": "Start my profile",
     "profileContinue": "Continue my profile",
     "profileEdit": "Edit my profile",

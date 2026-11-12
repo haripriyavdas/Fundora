@@ -1,0 +1,211 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`_example.json against the sample profiles > anjali matches the snapshot 1`] = `
+{
+  "reason": "You are ₹20,000 above the income limit of ₹3,00,000.",
+  "reasons": [
+    {
+      "result": "met",
+      "rule": "For girls and women",
+      "text": "For girls and women: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For Engineering students or Computer / IT students",
+      "text": "For Engineering students or Computer / IT students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For first-year students",
+      "text": "For first-year students: you meet this.",
+    },
+    {
+      "result": "near",
+      "rule": "Family income up to ₹3,00,000",
+      "text": "You are ₹20,000 above the income limit of ₹3,00,000.",
+    },
+    {
+      "result": "near",
+      "rule": "Class 12 marks at least 60%",
+      "text": "You need Class 12 marks of at least 60%; you have 58%, which is 2% short.",
+    },
+  ],
+  "score": 75,
+  "state": "almost",
+}
+`;
+
+exports[`_example.json against the sample profiles > kavya matches the snapshot 1`] = `
+{
+  "reason": "You are ₹6,00,000 above the income limit of ₹3,00,000.",
+  "reasons": [
+    {
+      "result": "met",
+      "rule": "For girls and women",
+      "text": "For girls and women: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For Engineering students or Computer / IT students",
+      "text": "For Engineering students or Computer / IT students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For first-year students",
+      "text": "For first-year students: you meet this.",
+    },
+    {
+      "result": "notMet",
+      "rule": "Family income up to ₹3,00,000",
+      "text": "You are ₹6,00,000 above the income limit of ₹3,00,000.",
+    },
+    {
+      "result": "met",
+      "rule": "Class 12 marks at least 60%",
+      "text": "Class 12 marks at least 60%: you meet this.",
+    },
+  ],
+  "score": 95,
+  "state": "not",
+}
+`;
+
+exports[`_example.json against the sample profiles > meera matches the snapshot 1`] = `
+{
+  "reason": "You meet all 5 conditions.",
+  "reasons": [
+    {
+      "result": "met",
+      "rule": "For girls and women",
+      "text": "For girls and women: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For Engineering students or Computer / IT students",
+      "text": "For Engineering students or Computer / IT students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For first-year students",
+      "text": "For first-year students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "Family income up to ₹3,00,000",
+      "text": "Family income up to ₹3,00,000: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "Class 12 marks at least 60%",
+      "text": "Class 12 marks at least 60%: you meet this.",
+    },
+  ],
+  "score": 100,
+  "state": "eligible",
+}
+`;
+
+exports[`_example.json against the sample profiles > newStudent matches the snapshot 1`] = `
+{
+  "reason": "Add your gender to check this scheme.",
+  "reasons": [
+    {
+      "result": "unknown",
+      "rule": "For girls and women",
+      "text": "Add your gender to your profile to check this.",
+    },
+    {
+      "result": "met",
+      "rule": "For Engineering students or Computer / IT students",
+      "text": "For Engineering students or Computer / IT students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For first-year students",
+      "text": "For first-year students: you meet this.",
+    },
+    {
+      "result": "unknown",
+      "rule": "Family income up to ₹3,00,000",
+      "text": "Add your family income to your profile to check this.",
+    },
+    {
+      "result": "unknown",
+      "rule": "Class 12 marks at least 60%",
+      "text": "Add your Class 12 marks to your profile to check this.",
+    },
+  ],
+  "score": 45,
+  "state": "unknown",
+}
+`;
+
+exports[`_example.json against the sample profiles > priya matches the snapshot 1`] = `
+{
+  "reason": "Add your gender to check this scheme.",
+  "reasons": [
+    {
+      "result": "unknown",
+      "rule": "For girls and women",
+      "text": "Add your gender to your profile to check this.",
+    },
+    {
+      "result": "met",
+      "rule": "For Engineering students or Computer / IT students",
+      "text": "For Engineering students or Computer / IT students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For first-year students",
+      "text": "For first-year students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "Family income up to ₹3,00,000",
+      "text": "Family income up to ₹3,00,000: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "Class 12 marks at least 60%",
+      "text": "Class 12 marks at least 60%: you meet this.",
+    },
+  ],
+  "score": 85,
+  "state": "unknown",
+}
+`;
+
+exports[`_example.json against the sample profiles > rahul matches the snapshot 1`] = `
+{
+  "reason": "This scheme is only for girls and women.",
+  "reasons": [
+    {
+      "result": "notMet",
+      "rule": "For girls and women",
+      "text": "This scheme is only for girls and women.",
+    },
+    {
+      "result": "met",
+      "rule": "For Engineering students or Computer / IT students",
+      "text": "For Engineering students or Computer / IT students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "For first-year students",
+      "text": "For first-year students: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "Family income up to ₹3,00,000",
+      "text": "Family income up to ₹3,00,000: you meet this.",
+    },
+    {
+      "result": "met",
+      "rule": "Class 12 marks at least 60%",
+      "text": "Class 12 marks at least 60%: you meet this.",
+    },
+  ],
+  "score": 85,
+  "state": "not",
+}
+`;

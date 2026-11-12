@@ -7,6 +7,7 @@ import { authRouter } from './auth.js'
 import { healthRouter } from './health.js'
 import { meRouter } from './me.js'
 import { profileRouter } from './profile.js'
+import { schemesRouter } from './schemes.js'
 
 /** Everything under /api/v1. There are no admin or role-based routes, by design. */
 export function createApiRouter(rateLimits?: RateLimits) {
@@ -20,6 +21,7 @@ export function createApiRouter(rateLimits?: RateLimits) {
   api.use('/auth', limiters.auth, authRouter)
   api.use('/me', meRouter)
   api.use('/profile', profileRouter)
+  api.use('/schemes', schemesRouter)
 
   // Unknown API paths get a JSON 404 instead of the React app
   api.use((_req, _res) => {

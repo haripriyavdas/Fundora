@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs'
 import { basename, join, relative } from 'node:path'
+import { todayInIndia } from '../../src/shared/dates.js'
 import { SchemeFileSchema, type SchemeFile } from '../../src/shared/schemas/scheme.js'
 
 export const SCHEMES_DIR = 'data/schemes'
@@ -14,10 +15,7 @@ export type CheckResult = {
   warnings: Issue[]
 }
 
-/** Today's date in India as YYYY-MM-DD, so deadlines don't flip at 5:30 am. */
-export function todayInIndia(now = new Date()): string {
-  return new Date(now.getTime() + 5.5 * 60 * 60 * 1000).toISOString().slice(0, 10)
-}
+export { todayInIndia }
 
 function daysBefore(date: string, days: number): string {
   const d = new Date(`${date}T00:00:00Z`)

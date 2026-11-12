@@ -36,7 +36,9 @@ type Result = {
    - no `notMet`, and 1–2 `near` or soft `unknown` → `almost`
    - otherwise → `not`
 3. **Score:** `100 × met / total`, +10 if the scheme's `groups` match the student (girls, disability, rural), so special schemes surface first; +5 if closing within 30 days; capped at 100.
-4. **Card reason (priority order):** first hard `notMet` → first `near` → first `unknown` → "You meet all N conditions".
+4. **Card reason (priority order):** first hard `notMet` → first soft `notMet` → first `near` → first `unknown` → "You meet all N conditions". When the state is `unknown`, the card names the missing hard field instead: "Add your gender to check this scheme."
+
+A missing value is always `unknown`, so `exists` can only be `met` or `unknown`. A value of the wrong type never passes.
 
 ## Operators
 
@@ -59,15 +61,21 @@ type Result = {
 - `unknown`: "Add your {fieldLabel} to your profile to check this."
 - met: "{label}: you meet this."
 
-Money uses Indian grouping (₹2,50,000). Templates use i18n keys later.
+Money uses Indian grouping (₹2,50,000). Words for fields and values are in `labels.ts`. Templates move to i18n keys later.
+
+When every value of an `eq`/`in` rule describes a group of students, the rule reads "For girls and women" and a fail reads "This scheme is only for girls and women."; otherwise "Gender: female" / "This scheme needs your gender to be female."
 
 ## Derived fields
 
-Computed before evaluating, never stored: `age` (from `dateOfBirth` and `today`), `isFinalYear`. Add new derived fields in `evaluate.ts` and list them in `PROFILE_FIELDS`.
+Computed before evaluating, never stored: `age` (completed years, from `dateOfBirth` and `today`), `isFinalYear` (`yearOfStudy` ≥ the usual course length for `courseCategory`: 5 for medicine, dental, architecture and law; 4 for engineering, pharmacy, agriculture, nursing, education, design and hotel management; 3 for the rest. NEP 4-year honours degrees can differ, so a scheme that depends on final year should say so in its `eligibilityText` too). Add new derived fields in `evaluate.ts` and list them in `PROFILE_FIELDS`.
 
 ## Caching
 
-The API caches results per user in `matchResults` with `profileVersion` + `dataVersion`. Changing either rebuilds the cache on the next request.
+The API caches results per user in `matchResults` (`services/matching.ts`), keyed on `profileVersion` + `dataVersion` + the India date (age and the closing-soon bonus change daily). Changing any of them rebuilds the cache on the next request. The cached results are encrypted, because a state or reason can reveal income, category or disability. The detail route runs `evaluate()` directly.
+
+## Checking a scheme file
+
+`npm run check-scheme -- <file> [--today YYYY-MM-DD]` validates the file, lists its rules in words and prints the state, score and reason for each made-up student in `src/shared/eligibility/fixtures/profiles.ts`.
 
 ## Tests (must exist)
 

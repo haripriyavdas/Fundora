@@ -92,7 +92,7 @@ Client
 Shared
 - [x] `schemas/rule.ts`: `RuleSchema`, `RULE_OPERATORS`; each rule's value is checked against the profile field's type and options
 - [x] `schemas/scheme.ts`: `SchemeFileSchema` (strict, https-only links, `offline` required for `onlineAndOffline`, `ALL` only on its own), value lists
-- [ ] `SchemeSchema` (API shape, no `rules`): with the schemes routes in Phase 4
+- [x] `SchemeSchema` (API shape, no `rules`): done in Phase 4
 
 Server
 - [x] `models/Scheme.ts` with `status`, `dataVersion`, `contentHash`, `seededAt` and the indexes in `database.md`
@@ -109,6 +109,25 @@ Scripts
 Then, for each scheme: *"Use the add-scheme skill to add <scheme name> from <official URL>."*
 
 ## Phase 4 — Eligibility engine (weeks 4–6)
+
+### Phase 4 — implementation checklist (2026-11-12)
+
+Shared
+- [x] `eligibility/`: `evaluate` (pure, derived `age` and `isFinalYear`), `operators`, `reasons` + `labels` (Indian money grouping), `fixtures/profiles.ts` (made-up students)
+- [x] Tests: every operator at pass / fail / on the limit / one over / in margin / past margin / missing; state rules; score; `_example.json` snapshots
+- [x] `schemas/match.ts` (`MatchResultSchema`), `SchemeSchema` + `SchemesQuery`, `dates.ts` (`todayInIndia`, `isSchemeOpen`)
+
+Scripts
+- [x] `check-scheme`: validates a file and prints state, score and reason per sample student
+
+Server
+- [x] `models/MatchResult.ts` (encrypted results, keyed on profileVersion + dataVersion + day, TTL 30 days)
+- [x] `services/matching.ts`, `readSession` middleware, `GET /schemes` (filters, sort) and `GET /schemes/:id` (eligibility) with Supertest tests
+
+Client
+- [x] Dashboard "Eligible for" and "Closing in 14 days" tiles use `GET /schemes` (`features/schemes`)
+- [ ] Matches, browse and scheme pages: Phase 5 (there's no mock scheme data to switch off; pages call the API from the start)
+- [ ] Real schemes in `data/schemes` (team, with the `add-scheme` skill), then `check-scheme` on 2–3 of them
 
 > **Prompt:**
 > Use the eligibility-engine skill. Implement src/shared/eligibility (evaluate, operators, reasons) exactly as docs/eligibility-engine.md describes, with fixtures and the full test list. Add scripts/check-scheme.ts. Then build services/matching.ts with the matchResults cache and make GET /api/v1/schemes and GET /api/v1/schemes/:id return match and eligibility data as docs/api.md describes. Turn VITE_USE_MOCK_DATA off for schemes and check that the dashboard, matches, browse and scheme pages work with real data.
