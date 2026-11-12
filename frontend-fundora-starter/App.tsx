@@ -14,7 +14,7 @@ const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage'))
 const VerifyEmailPage = lazy(() => import('@/pages/auth/VerifyEmailPage'))
 const DashboardPage = lazy(() => import('@/pages/app/DashboardPage'))
 const ProfilePage = lazy(() => import('@/pages/app/ProfilePage'))
-const ComingSoonPage = lazy(() => import('@/pages/app/ComingSoonPage'))
+const ApplicationsPage = lazy(() => import('@/pages/app/ApplicationsPage'))
 const MatchesPage = lazy(() => import('@/pages/app/MatchesPage'))
 const BrowsePage = lazy(() => import('@/pages/app/BrowsePage'))
 const SchemePage = lazy(() => import('@/pages/app/SchemePage'))
@@ -67,7 +67,7 @@ export default function App() {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="matches" element={<MatchesPage />} />
           {/* Until the tracker exists (Phase 6) */}
-          <Route path="applications" element={<ComingSoonPage area="applications" />} />
+          <Route path="applications" element={<ApplicationsPage />} />
         </Route>
 
         {/* Anyone can browse; signed-in students also see their match */}

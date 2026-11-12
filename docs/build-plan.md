@@ -148,6 +148,19 @@ Client
 
 ## Phase 6 — Tracker and reminders (weeks 7–8)
 
+### Phase 6 — implementation checklist (2026-11-13)
+
+- [x] `applications` model (stages `saved` \| `applied` \| `renewal_due` only), `notifications` model, reminder settings on `users`
+- [x] `GET/POST /saved`, `PATCH/DELETE /saved/:schemeId`, `GET/PATCH /notifications/settings` (`requireAuth` + `requireAccount`)
+- [x] Saving creates reminders 14, 7 and 1 days before `closesOn` (08:00 IST); removing deletes unsent ones
+- [x] Daily reminders job (`jobs/reminders.ts`, 08:00 IST): renewals, deadline sync, send-once claim, skip rules
+- [x] Reminder emails (`email-templates/reminders.ts`) linking to the scheme page, with the scam warning
+- [x] Client: `features/applications/api.ts` + `store.ts`; `/applications` three-column tracker with a stage menu on each card, remove, reminder settings
+- [x] Save button on the scheme page ("Log in to save" for guests); dashboard "Saved to apply", "Offline visits needed" and saved list
+- [x] Tests: `src/server/routes/saved.test.ts`, `pages/app/ApplicationsPage.test.tsx`, save tests in `SchemePages.test.tsx`
+- [ ] Try it end to end with a verified account in `npm run dev` (emails print in the terminal with `EMAIL_PROVIDER=console`)
+- [ ] Before launch: Render free tier sleeps, so move the job to a paid instance or a Render Cron Job
+
 > **Prompt:**
 > Read docs/api.md (saved routes) and docs/backend.md (Jobs). Build the Application model (stages saved | applied | renewal_due only), the /saved routes, notification creation on save (14, 7 and 1 days before closesOn), the daily reminders job, renewal reminders, and the notification settings routes with tests. Then update src/client/features/applications/store.ts to call the API, and make /applications a three-column tracker (Saved, Applied, Renewal due), with a stage menu on each card on mobile.
 

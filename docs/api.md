@@ -48,7 +48,7 @@ The team's internal `notes` are never sent either. Shapes: `SchemeSchema`, `Sche
 
 Raw `rules` stay server-side so the client can't drift from the engine, but the reasons explain each one.
 
-`SavedScheme` = `{ schemeId, stage, savedOn, appliedOn?, notes? }`.
+`SavedScheme` = `{ schemeId, stage, savedOn, appliedOn?, notes? }` (dates are India dates, `YYYY-MM-DD`). `POST /saved` returns 404 for an unknown or retired scheme and 409 `ALREADY_SAVED` if it's already in the list. `PATCH` with `stage: "applied"` sets `appliedOn` to today; `notes: null` clears the note. Another student's scheme id gives 404.
 
 ## Conventions
 

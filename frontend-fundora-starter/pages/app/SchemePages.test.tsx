@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Scheme } from '@shared/schemas'
+import { listSaved, saveScheme } from '@/features/applications/api'
 import { getMe } from '@/features/auth/api'
 import { loadSession } from '@/features/auth/session'
 import { getScheme, getSchemes } from '@/features/schemes/api'
@@ -15,6 +16,7 @@ import SchemePage from './SchemePage'
 
 vi.mock('@/features/schemes/api', () => ({ getSchemes: vi.fn(), getScheme: vi.fn() }))
 vi.mock('@/features/auth/api', () => ({ getMe: vi.fn() }))
+vi.mock('@/features/applications/api', () => ({ listSaved: vi.fn(), saveScheme: vi.fn() }))
 
 const mockSchemes = vi.mocked(getSchemes)
 const mockScheme = vi.mocked(getScheme)
@@ -85,6 +87,7 @@ function open(path: string) {
 beforeEach(() => {
   mockSchemes.mockReset()
   mockScheme.mockReset()
+  vi.mocked(listSaved).mockResolvedValue([])
 })
 afterEach(cleanup)
 
@@ -189,5 +192,34 @@ describe('/schemes/:id', () => {
     mockScheme.mockRejectedValue(new ApiError(404, 'NOT_FOUND', 'x'))
     open('/schemes/nope')
     expect(await screen.findByRole('heading', { name: 'Scheme not found' })).toBeTruthy()
+  })
+
+  it('saves the scheme to My applications for a student', async () => {
+    // A fresh student id so the shared tracker store loads this list
+    mockMe.mockResolvedValue({
+      user: { id: 'saver', email: 'asha@example.com', verified: true },
+      profileComplete: 100,
+    })
+    await loadSession(true)
+    vi.mocked(saveScheme).mockResolvedValue({
+      schemeId: 'girls-award',
+      stage: 'saved',
+      savedOn: '2026-11-13',
+    })
+    mockScheme.mockResolvedValue(eligible)
+    const user = open('/schemes/girls-award')
+
+    const save = await screen.findByRole('button', { name: 'Save to my applications' })
+    await vi.waitFor(() => expect((save as HTMLButtonElement).disabled).toBe(false))
+    await user.click(save)
+    expect(saveScheme).toHaveBeenCalledWith('girls-award')
+    expect(await screen.findByText('In my applications: Saved')).toBeTruthy()
+  })
+
+  it('asks guests to log in to save', async () => {
+    await signOut()
+    mockScheme.mockResolvedValue(eligible)
+    open('/schemes/girls-award')
+    expect(await screen.findByRole('link', { name: 'Log in to save' })).toBeTruthy()
   })
 })
