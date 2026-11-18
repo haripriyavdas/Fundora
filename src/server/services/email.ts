@@ -2,6 +2,7 @@ import { env } from '../config/env.js'
 import { logger } from '../lib/logger.js'
 import { resetPasswordEmail, verifyEmail } from './email-templates/auth.js'
 import type { EmailContent } from './email-templates/layout.js'
+import { deadlineReminderEmail, renewalReminderEmail } from './email-templates/reminders.js'
 
 export type OutgoingEmail = EmailContent & { to: string }
 export type EmailTransport = (email: OutgoingEmail) => Promise<void>
@@ -72,3 +73,24 @@ export const sendVerificationEmail = (to: string, token: string) =>
 
 export const sendPasswordResetEmail = (to: string, token: string) =>
   send({ to, ...resetPasswordEmail(link('/reset-password', token)) })
+
+const schemeUrl = (schemeId: string) => `${env.APP_URL}/schemes/${encodeURIComponent(schemeId)}`
+
+export const sendDeadlineReminder = (
+  to: string,
+  scheme: { id: string; name: string },
+  closesOn: string,
+  daysLeft: number,
+) =>
+  send({
+    to,
+    ...deadlineReminderEmail({
+      schemeName: scheme.name,
+      closesOn,
+      daysLeft,
+      url: schemeUrl(scheme.id),
+    }),
+  })
+
+export const sendRenewalReminder = (to: string, scheme: { id: string; name: string }) =>
+  send({ to, ...renewalReminderEmail({ schemeName: scheme.name, url: schemeUrl(scheme.id) }) })

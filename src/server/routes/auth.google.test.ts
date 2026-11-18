@@ -46,7 +46,18 @@ describe('POST /auth/google', () => {
     expect(user).not.toHaveProperty('passwordHash')
     expect(JSON.stringify(user)).not.toContain(ID_TOKEN)
     expect(Object.keys(user!).sort()).toEqual(
-      ['__v', '_id', 'consentAt', 'createdAt', 'email', 'googleId', 'updatedAt', 'verified'].sort(),
+      [
+        '__v',
+        '_id',
+        'consentAt',
+        'createdAt',
+        'deadlineEmails',
+        'email',
+        'googleId',
+        'renewalEmails',
+        'updatedAt',
+        'verified',
+      ].sort(),
     )
   })
 

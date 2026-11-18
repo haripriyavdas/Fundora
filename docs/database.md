@@ -14,6 +14,7 @@ Databases: `fundora_dev` (local + MCP), `fundora_test` (CI uses mongodb-memory-s
 | `googleId` | string? | sparse unique |
 | `verified` | boolean | |
 | `consentAt` | Date | when they accepted the privacy notice |
+| `deadlineEmails`, `renewalEmails` | boolean | reminder email settings, default `true` (a missing value counts as `true`) |
 | `verifyTokenHash`, `verifyTokenExpiresAt` | string?, Date? | SHA-256 of the emailed verification token (24 h); removed once used |
 | `resetTokenHash`, `resetTokenExpiresAt` | string?, Date? | SHA-256 of the emailed reset token (1 h); removed once used |
 | `createdAt`, `updatedAt` | Date | timestamps |
@@ -69,7 +70,9 @@ Index: `{ userId: 1, schemeId: 1 }` unique. API path is `/saved`.
 `userId`, `profileVersion`, `dataVersion`, `computedFor` (India date), `results` (encrypted JSON: `[{ schemeId, state, score, reason, reasons[] }]`), `computedAt`. Index `{ userId: 1 }` unique; rebuilt when either version or the day changes. TTL index on `computedAt` (30 days). Encrypted because a state or reason can reveal income, category or disability.
 
 ### notifications
-`userId`, `schemeId`, `kind` (`deadline` \| `renewal`), `sendAt`, `sentAt?`. Index `{ sentAt: 1, sendAt: 1 }`, `{ userId: 1 }`.
+`userId`, `schemeId`, `kind` (`deadline` \| `renewal`), `daysBefore?` (14, 7 or 1 for deadlines; 0 for renewals), `sendAt` (08:00 IST on the day), `sentAt?`, `skipped?` (claimed but not sent because it no longer applied). Indexes: `{ sentAt: 1, sendAt: 1 }`, `{ userId: 1 }`, `{ userId: 1, schemeId: 1, kind: 1, sendAt: 1 }` unique (so creating reminders is safe to repeat).
+
+Created by `POST /saved` and by the daily job (`services/reminders.ts`); `DELETE /saved/:schemeId` removes unsent ones. A reminder is never emailed twice: the job sets `sentAt` before sending.
 
 ### reports
 `schemeId`, `userId`, `field`, `message`, `status` (`open` \| `fixed` \| `rejected`), `createdAt`. Index `{ status: 1 }`. The team reviews these in Atlas (or through the MCP server) and fixes the scheme file by PR.

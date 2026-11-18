@@ -3,32 +3,48 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router'
 import { todayInIndia } from '@shared/dates'
 import { EmptyTile } from '@/components/app/EmptyTile'
+import { SchemeCard } from '@/components/app/SchemeCard'
 import { StatTile } from '@/components/app/StatTile'
 import { button } from '@/components/ui/button'
 import { Eyebrow, PageHeader } from '@/components/ui/Eyebrow'
+import { useSaved } from '@/features/applications/store'
 import { useSession } from '@/features/auth/session'
-import { matchStats } from '@/features/schemes/stats'
+import { matchStats, savedStats } from '@/features/schemes/stats'
 import { useSchemes } from '@/features/schemes/useSchemes'
 import { cn } from '@/lib/cn'
 
 const stats = ['eligible', 'closing', 'saved', 'offline'] as const
 
-// Saved and offline stay empty until the tracker exists (Phase 6)
+/** Saved schemes shown on the dashboard before "See all". */
+const DASHBOARD_SAVED = 3
+
 export default function DashboardPage() {
   const { t } = useTranslation()
   const session = useSession()
   const { state: schemes, retry } = useSchemes()
+  const { state: saved, retry: retrySaved } = useSaved()
   if (session.status !== 'student') return null
 
-  const counts =
-    schemes.status === 'ready' ? matchStats(schemes.schemes, todayInIndia()) : undefined
-  const statValue = (key: (typeof stats)[number]) => {
-    if (key === 'eligible' || key === 'closing') {
-      if (schemes.status === 'loading') return t('dashboard.loadingValue')
-      if (counts) return String(counts[key])
-    }
-    return t('dashboard.noValue')
+  const today = todayInIndia()
+  const counts = {
+    ...(schemes.status === 'ready' ? matchStats(schemes.schemes, today) : {}),
+    ...(schemes.status === 'ready' && saved.status === 'ready'
+      ? savedStats(saved.items, schemes.schemes)
+      : {}),
   }
+  const statValue = (key: (typeof stats)[number]) => {
+    if (schemes.status === 'loading' || saved.status === 'loading')
+      return t('dashboard.loadingValue')
+    const value = counts[key]
+    return value === undefined ? t('dashboard.noValue') : String(value)
+  }
+
+  // Still to apply for, newest first, with their scheme details
+  const byId = new Map(schemes.status === 'ready' ? schemes.schemes.map((s) => [s.id, s]) : [])
+  const toApply =
+    saved.status === 'ready'
+      ? saved.items.filter((i) => i.stage !== 'applied' && byId.has(i.schemeId))
+      : []
 
   const { profileComplete } = session
   const ctaKey =
@@ -61,15 +77,22 @@ export default function DashboardPage() {
             />
           ))}
         </div>
-        {schemes.status === 'error' ? (
+        {schemes.status === 'error' || saved.status === 'error' ? (
           <p role="alert" className="mt-3 text-sm text-body">
             {t('dashboard.statsError')}{' '}
-            <button type="button" onClick={retry} className="font-semibold text-brand underline">
+            <button
+              type="button"
+              onClick={() => {
+                if (schemes.status === 'error') retry()
+                if (saved.status === 'error') void retrySaved()
+              }}
+              className="font-semibold text-brand underline"
+            >
               {t('dashboard.retry')}
             </button>
           </p>
         ) : (
-          <p className="mt-3 text-sm text-muted">{t('dashboard.statsPending')}</p>
+          <p className="mt-3 text-sm text-muted">{t('dashboard.statsNote')}</p>
         )}
       </section>
 
@@ -111,19 +134,34 @@ export default function DashboardPage() {
 
       <section aria-labelledby="applications-heading">
         <Eyebrow>{t('dashboard.applicationsEyebrow')}</Eyebrow>
-        <h2 id="applications-heading" className="mt-2 text-3xl font-extrabold tracking-tight">
-          {t('dashboard.applicationsTitle')}
-        </h2>
-        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          <EmptyTile
-            Icon={Bookmark}
-            title={t('dashboard.saveTitle')}
-            text={t('dashboard.saveText')}
-          >
-            <Link to="/browse" className={button.ink}>
-              {t('nav.browse')}
+        <div className="mt-2 flex flex-wrap items-end justify-between gap-3">
+          <h2 id="applications-heading" className="text-3xl font-extrabold tracking-tight">
+            {t('dashboard.applicationsTitle')}
+          </h2>
+          {toApply.length > 0 && (
+            <Link to="/applications" className={button.secondary}>
+              {t('dashboard.seeAllSaved')}
             </Link>
-          </EmptyTile>
+          )}
+        </div>
+        <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {toApply.slice(0, DASHBOARD_SAVED).map((item) => {
+            const scheme = byId.get(item.schemeId)
+            return (
+              scheme && <SchemeCard key={item.schemeId} scheme={scheme} today={today} showMatch />
+            )
+          })}
+          {toApply.length < DASHBOARD_SAVED && (
+            <EmptyTile
+              Icon={Bookmark}
+              title={t('dashboard.saveTitle')}
+              text={t('dashboard.saveText')}
+            >
+              <Link to="/browse" className={button.ink}>
+                {t('nav.browse')}
+              </Link>
+            </EmptyTile>
+          )}
         </div>
       </section>
     </div>

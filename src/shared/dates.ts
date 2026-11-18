@@ -26,3 +26,20 @@ export function isSchemeOpen(
   if (scheme.closesOn && today > scheme.closesOn) return false
   return true
 }
+
+/** "17 Nov 2026". Reads YYYY-MM-DD as a calendar date, so no time zone can shift the day. */
+export function formatDate(date: string): string {
+  return new Intl.DateTimeFormat('en-IN', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${date}T00:00:00Z`))
+}
+
+/** The India date `days` after (or, if negative, before) a YYYY-MM-DD date. */
+export function addDays(date: string, days: number): string {
+  const d = new Date(`${date}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + days)
+  return d.toISOString().slice(0, 10)
+}

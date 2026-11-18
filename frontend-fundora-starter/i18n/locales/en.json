@@ -163,14 +163,13 @@
       },
       "saved": {
         "label": "Saved to apply",
-        "text": "Schemes you saved to your applications."
+        "text": "Schemes you saved and haven’t applied for yet."
       },
       "offline": {
         "label": "Offline visits needed",
         "text": "Saved schemes that need papers handed in at an office."
       }
     },
-    "statsPending": "Saved and offline numbers appear once you can save schemes. The more of your profile you fill, the more schemes we can check.",
     "profileEyebrow": "01 · Your profile",
     "profileTitle": "Your profile",
     "profileComplete": "{{percent}}% complete",
@@ -181,7 +180,9 @@
     "applicationsEyebrow": "02 · My applications",
     "applicationsTitle": "Your saved schemes",
     "saveTitle": "Save a scheme",
-    "saveText": "Find a scheme and save it to keep its details and deadline here."
+    "saveText": "Find a scheme and save it to keep its details and deadline here.",
+    "statsNote": "The more of your profile you fill, the more schemes we can check.",
+    "seeAllSaved": "See all"
   },
   "schemes": {
     "aidType": {
@@ -335,7 +336,13 @@
     "apply": "Apply on the official portal",
     "applyNote": "Opens {{domain}} in a new tab. Fundora never asks for your portal password and never charges a fee.",
     "verifyNote": "Always check the details on the official site before you apply.",
-    "onThisPage": "On this page"
+    "onThisPage": "On this page",
+    "save": "Save to my applications",
+    "saveNote": "We’ll email you 14, 7 and 1 days before it closes.",
+    "saveError": "We couldn’t save this. Please try again.",
+    "savedAs": "In my applications: {{stage}}",
+    "openTracker": "Open my applications",
+    "loginToSave": "Log in to save"
   },
   "comingSoon": {
     "badge": "Coming soon",
@@ -589,5 +596,41 @@
     "body": "This page is being written and will be reviewed before launch.",
     "notFoundTitle": "Page not found",
     "notFoundBody": "The page you're looking for doesn't exist."
+  },
+  "applications": {
+    "eyebrow": "My applications",
+    "title": "My applications",
+    "intro": "Keep track of what you’ve saved, what you’ve applied for and what needs renewing. You apply on the official portal yourself.",
+    "stages": {
+      "saved": "Saved",
+      "applied": "Applied",
+      "renewal_due": "Renewal due"
+    },
+    "columnEmpty": {
+      "saved": "Schemes you save show up here until you apply.",
+      "applied": "When you’ve applied on the portal, move the scheme here.",
+      "renewal_due": "Applied schemes come here when it’s time to renew."
+    },
+    "emptyTitle": "Save a scheme",
+    "emptyText": "Find a scheme and save it to keep its details and deadline here.",
+    "findSchemes": "See my matches",
+    "loadError": "We couldn’t load your applications.",
+    "stageLabel": "Stage",
+    "savedOn": "Saved on {{date}}",
+    "appliedOn": "Applied on {{date}}",
+    "gone": "This scheme is no longer listed on Fundora.",
+    "openPortal": "Official portal",
+    "remove": "Remove",
+    "removeFrom": "Remove {{name}} from my applications",
+    "actionError": "That didn’t work. Please try again.",
+    "reminders": {
+      "title": "Email reminders",
+      "intro": "Sent to your verified email at 8 am. We never share your email.",
+      "deadlineEmails": "Deadline reminders",
+      "deadlineEmailsText": "14, 7 and 1 days before a saved scheme closes.",
+      "renewalEmails": "Renewal reminders",
+      "renewalEmailsText": "When a scheme you applied for opens again for renewal.",
+      "error": "We couldn’t save your choice. Please try again."
+    }
   }
 }

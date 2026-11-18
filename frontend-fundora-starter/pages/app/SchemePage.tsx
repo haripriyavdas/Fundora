@@ -1,6 +1,8 @@
 import {
   AlertTriangle,
   ArrowLeft,
+  Bookmark,
+  BookmarkCheck,
   CheckCircle2,
   ExternalLink,
   FileText,
@@ -10,12 +12,14 @@ import {
 } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { daysBetween, todayInIndia } from '@shared/dates'
 import type { RuleResult, Scheme } from '@shared/schemas'
 import { MatchChip, ModeChip } from '@/components/app/MatchChip'
 import { Alert } from '@/components/ui/Alert'
 import { button } from '@/components/ui/button'
+import { save, useSaved } from '@/features/applications/store'
 import { useSession } from '@/features/auth/session'
 import { deadline, domainOf, formatDate } from '@/features/schemes/format'
 import { useScheme } from '@/features/schemes/useSchemes'
@@ -351,6 +355,20 @@ function SchemeDetails({ scheme }: { scheme: Scheme }) {
               {t('scheme.applyNote', { domain: domainOf(scheme.portal.url) })}
             </p>
             <p className="mt-3 text-xs text-muted">{t('scheme.verifyNote')}</p>
+            <div className="mt-4 border-t border-line-soft pt-4">
+              {student ? (
+                <SaveButton schemeId={scheme.id} />
+              ) : (
+                <Link
+                  to="/login"
+                  state={{ from: `/schemes/${scheme.id}` }}
+                  className={cn(button.secondary, 'w-full')}
+                >
+                  <Bookmark aria-hidden className="size-4" />
+                  {t('scheme.loginToSave')}
+                </Link>
+              )}
+            </div>
           </div>
           <nav
             aria-label={t('scheme.onThisPage')}
@@ -408,5 +426,61 @@ function Section({ id, title, children }: { id: string; title: string; children:
       </h2>
       <div className="mt-4">{children}</div>
     </section>
+  )
+}
+
+/** Adds the scheme to My applications, or shows that it's already there. */
+function SaveButton({ schemeId }: { schemeId: string }) {
+  const { t } = useTranslation()
+  const { state } = useSaved()
+  const [busy, setBusy] = useState(false)
+  const [failed, setFailed] = useState(false)
+  const item =
+    state.status === 'ready' ? state.items.find((i) => i.schemeId === schemeId) : undefined
+
+  if (item) {
+    return (
+      <div className="flex flex-col gap-2">
+        <p className="flex items-center gap-2 text-sm font-semibold text-ink">
+          <BookmarkCheck aria-hidden className="size-4 text-eligible" />
+          {t('scheme.savedAs', { stage: t(`applications.stages.${item.stage}`) })}
+        </p>
+        <Link to="/applications" className={cn(button.secondary, 'w-full')}>
+          {t('scheme.openTracker')}
+        </Link>
+      </div>
+    )
+  }
+
+  async function onSave() {
+    setBusy(true)
+    setFailed(false)
+    try {
+      await save(schemeId)
+    } catch {
+      setFailed(true)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => void onSave()}
+        disabled={busy || state.status !== 'ready'}
+        className={cn(button.ink, 'w-full')}
+      >
+        <Bookmark aria-hidden className="size-4" />
+        {t('scheme.save')}
+      </button>
+      <p className="mt-2 text-xs text-muted">{t('scheme.saveNote')}</p>
+      {failed && (
+        <p role="alert" className="mt-2 text-sm text-not">
+          {t('scheme.saveError')}
+        </p>
+      )}
+    </>
   )
 }

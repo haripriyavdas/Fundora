@@ -50,6 +50,8 @@ In production: `express.static('dist/client')` and send `index.html` for any non
 | `reminders` | daily 08:00 | Sends due notifications (14, 7, 1 days before `closesOn` for saved schemes; renewal reminders), marks `sentAt` |
 | `linkCheck` | Monday 03:00 | HEAD/GET every active `portal.url` and `sourceUrl`; emails the team a list of failures |
 
+`jobs/reminders.ts` schedules `services/reminders.ts` `runReminders()` with node-cron (`0 8 * * *`, `Asia/Kolkata`); `index.ts` starts it unless `NODE_ENV=test`. Each run: (1) moves `applied` schemes that have a `renewal` and whose `opensOn` is after the student applied to `renewal_due` and adds a renewal reminder; (2) re-creates deadline reminders for tracked schemes, so a changed `closesOn` is picked up; (3) claims each due notification by setting `sentAt`, then emails it only if the student is verified, has that email type on, the scheme is still active and in a fitting stage (`saved`/`renewal_due` for deadlines), the reminder matches the current `closesOn`, and it's under 36 hours late. Otherwise it's marked `skipped`. Logs counts only, never emails or profile data.
+
 Jobs must be safe to run twice (check `sentAt` before sending). On Render's free tier the instance sleeps, so the jobs only run while it's awake; move to a paid instance or a Render Cron Job before launch.
 
 ## Auth flows
