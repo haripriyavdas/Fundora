@@ -1,0 +1,92 @@
+{
+  "id": "post-matric-st",
+  "name": "Post-Matric Scholarship for ST Students",
+  "provider": "Ministry of Tribal Affairs, Government of India (awarded by your State/UT)",
+  "providerType": "central",
+  "aidType": "scholarship",
+  "level": "UG",
+  "courses": ["ALL"],
+  "states": ["ALL"],
+
+  "amount": "Course fees + ₹300–1,200 / month maintenance",
+  "mode": "online",
+  "portal": { "name": "National Scholarship Portal", "url": "https://scholarships.gov.in" },
+  "sourceUrl": "https://scholarships.gov.in/public/schemeGuidelines/EDUPostMatricScholarshipPMSforSTstudents.pdf",
+  "verifiedOn": "2026-11-12",
+
+  "about": "A centrally sponsored scholarship for Scheduled Tribe students after Class 10. The State or Union Territory you belong to awards it, with full funding from the Government of India.",
+  "benefits": [
+    "Compulsory fees paid to the college or university (enrolment, tuition, library, games and similar)",
+    "Monthly maintenance allowance: degree courses in engineering, medicine, management, computer applications and similar get ₹1,200 (hostel) or ₹550 (day scholar)",
+    "B.Pharm, B.Sc Nursing, LLB, hotel management and similar: ₹820 (hostel) or ₹530 (day scholar) a month",
+    "Other degrees such as BA, B.Sc and B.Com: ₹570 (hostel) or ₹300 (day scholar) a month",
+    "₹1,200 a year for books for correspondence course students, and extra allowances for students with disabilities"
+  ],
+  "eligibilityText": [
+    "Scheduled Tribe students who have passed Class 10 or a higher examination",
+    "Parents' or guardian's income from all sources up to ₹2.50 lakh a year",
+    "Studying a recognised post-matric course in a recognised institution in India (some courses such as pilot and aircraft maintenance training are excluded)",
+    "You can't hold any other scholarship or stipend at the same time",
+    "All children of the same parents can apply"
+  ],
+
+  "rules": [
+    {
+      "field": "category",
+      "op": "in",
+      "value": ["ST"],
+      "hard": true,
+      "label": "Scheduled Tribe students"
+    },
+    {
+      "field": "familyIncome",
+      "op": "lte",
+      "value": 250000,
+      "nearMargin": 50000,
+      "label": "Family income up to ₹2.50 lakh a year"
+    },
+    {
+      "field": "hasOtherScholarship",
+      "op": "eq",
+      "value": false,
+      "label": "Not holding another scholarship or stipend"
+    }
+  ],
+
+  "documents": [
+    { "id": "caste-certificate", "name": "ST caste certificate" },
+    {
+      "id": "income-certificate",
+      "name": "Income certificate",
+      "note": "Parents' or guardian's income from all sources"
+    },
+    { "id": "marks-cards", "name": "Marks card of your last examination" },
+    { "id": "fee-receipt", "name": "College fee receipt" }
+  ],
+  "steps": [
+    {
+      "title": "Check your state's process",
+      "text": "Your State or UT awards this scholarship. Read the official guidelines and your state's notice for this year's dates."
+    },
+    {
+      "title": "Apply on the official portal",
+      "text": "Register and apply on the official portal yourself, and upload the documents it asks for."
+    }
+  ],
+  "officialDocuments": [
+    {
+      "title": "Post Matric Scholarship for ST students: scheme guidelines",
+      "kind": "guidelines",
+      "format": "pdf",
+      "url": "https://scholarships.gov.in/public/schemeGuidelines/EDUPostMatricScholarshipPMSforSTstudents.pdf"
+    }
+  ],
+  "notes": [
+    "UNVERIFIED: the guidelines PDF doesn't give a last date; closesOn left out. Dates are set each year per state.",
+    "UNVERIFIED: the PDF doesn't name the apply portal. It is hosted on scholarships.gov.in (NSP), so NSP is used; confirm the current portal, as some states use their own.",
+    "The guidelines say the last revision was w.e.f. 01.04.2013; amounts and the ₹2.50 lakh limit may have been revised since. Re-check against the Ministry of Tribal Affairs.",
+    "Documents list is not given in the PDF; the four listed are the ones the eligibility text implies. Confirm on the portal.",
+    "Excluded courses (pilot licence, aircraft maintenance engineer) can't be expressed as a rule; shown in eligibilityText.",
+    "The source PDF couldn't be fetched with the default certificate check; it was downloaded with revocation checking off (certificate itself was valid)."
+  ]
+}
